@@ -4,13 +4,21 @@ channels:
   - conda-forge
   - bioconda
 dependencies:
+  # Command-line tools called by the module scripts and by Selenoprofiles/Secmarker through the shell;
+  # the Seqera Containers base image does not provide them.
+  - conda-forge::coreutils
+  - conda-forge::findutils
+  - conda-forge::gawk
+  - conda-forge::grep
+  - conda-forge::gzip
+  - conda-forge::sed
+  - conda-forge::tar
   - bioconda::blast-legacy=2.2.26
   - bioconda::exonerate=2.4.0
   - bioconda::mafft=7.520
   - bioconda::obonet=1.3.0
   - bioconda::wise2=2.4.1
   - conda-forge::biopython=1.88
-  - conda-forge::gawk=5.4.1
   - conda-forge::natsort=8.4.0
   - conda-forge::networkx=3.6.1
   - conda-forge::numpy=2.4.4
