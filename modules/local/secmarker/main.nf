@@ -3,7 +3,9 @@ process SECMARKER {
     label 'process_medium'
 
     conda "${moduleDir}/environment.yml"
-    // No Biocontainers image yet: use -profile conda/mamba, or -profile wave,<engine> to build one from environment.yml
+    container "${ workflow.containerEngine in ['singularity', 'apptainer'] && !task.ext.singularity_pull_docker_container
+        ? 'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/cd/cd8e9fc85e5235d3fe36ef67d15a29c1ac9dab80c91e5928a0ff8cdb2cd5505a/data'
+        : 'community.wave.seqera.io/library/hmmer_infernal_biopython_networkx_pruned:ffb666d1b26fedb5' }"
 
     input:
     tuple val(meta), path(fasta)
