@@ -55,7 +55,9 @@ process SELENOPROFILES_SELENOPROFILES {
         -output_three_prime_file ${prefix}.three_prime.fa \\
         ${args}
 
-    find ${prefix}_results -name '*.ali' -exec cp {} ${prefix}_alignments/ \\;
+    # the container has no find(1): copy the alignments with a bash glob
+    shopt -s globstar nullglob
+    for ali in ${prefix}_results/**/*.ali; do cp "\$ali" ${prefix}_alignments/; done
     tar -czf ${prefix}_results.tar.gz ${prefix}_results
     rm -rf tmp ${prefix}_results ${target}.n?? formatdb.log ${is_compressed ? target : ''}
     """
