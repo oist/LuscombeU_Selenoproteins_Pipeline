@@ -1,0 +1,20 @@
+Changes in component 'nf-core/miniprot/align'
+'modules/nf-core/miniprot/align/meta.yml' is unchanged
+Changes in 'miniprot/align/main.nf':
+--- modules/nf-core/miniprot/align/main.nf
++++ modules/nf-core/miniprot/align/main.nf
+@@ -33,6 +33,7 @@
+     """
+ 
+     stub:
++    def args = task.ext.args ?: ''
+     def prefix = task.ext.prefix ?: "${meta.id}"
+     def extension = args.contains("--gff") ? "gff" : "paf"
+     """
+
+'modules/nf-core/miniprot/align/environment.yml' is unchanged
+'modules/nf-core/miniprot/align/tests/nextflow.paf.config' is unchanged
+'modules/nf-core/miniprot/align/tests/main.nf.test' is unchanged
+'modules/nf-core/miniprot/align/tests/main.nf.test.snap' is unchanged
+'modules/nf-core/miniprot/align/tests/nextflow.gff.config' is unchanged
+************************************************************

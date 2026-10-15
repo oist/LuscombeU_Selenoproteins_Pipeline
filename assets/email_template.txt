@@ -1,10 +1,10 @@
 Run Name: $runName
 
 <% if (success){
-    out << "## oist/selenoproteins execution completed successfully! ##"
+    out << "## oist/LuscombeU_Selenoproteins_Pipeline execution completed successfully! ##"
 } else {
     out << """####################################################
-## oist/selenoproteins execution completed unsuccessfully! ##
+## oist/LuscombeU_Selenoproteins_Pipeline execution completed unsuccessfully! ##
 ####################################################
 The exit status of the task that caused the workflow execution to fail was: $exitStatus.
 The full error message was:
@@ -27,5 +27,5 @@ Pipeline Configuration:
 <% out << summary.collect{ k,v -> " - $k: $v" }.join("\n") %>
 
 --
-oist/selenoproteins
-https://github.com/oist/selenoproteins
+oist/LuscombeU_Selenoproteins_Pipeline
+https://github.com/oist/LuscombeU_Selenoproteins_Pipeline

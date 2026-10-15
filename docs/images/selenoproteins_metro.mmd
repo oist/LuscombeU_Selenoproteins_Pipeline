@@ -1,0 +1,80 @@
+%%metro title: selenoproteins
+%%metro grid: input | 0,0
+%%metro grid: genes | 1,0
+%%metro grid: annotation | 1,1
+%%metro grid: trnasec | 1,2
+%%metro grid: reporting | 2,0,3
+%%metro legend: bl
+%%metro line: sp | Selenoprofiles route | #24B064
+%%metro line: mp | miniprot cross-check | #8E44AD
+%%metro line: secis | SECIS evidence (Rfam or O. dioica model) | #E67E22
+%%metro line: as | Annotation checks, if GFF3 given | #7F8C8D | dashed
+%%metro line: rt | Transcript screen, optional | #D35400 | dashed
+%%metro line: ex | Expectation check, optional | #8D6E63 | dashed
+%%metro line: sm | tRNA-Sec, Secmarker | #C0392B
+%%metro line: cm | tRNA-Sec, cmsearch | #2980B9
+%%metro line: ts | tRNA-Sec, tRNAscan-SE (optional) | #16A085 | dashed
+%%metro line: qc | Assembly statistics | #2196F3
+
+graph LR
+    subgraph input [Input]
+        samplesheet[Samplesheet]
+    end
+    subgraph genes [Selenoprotein genes]
+        spdb[selenoprofiles download + or untar]
+        selenoprofiles[selenoprofiles +]
+        profq[profile queries +]
+        mpalign[miniprot index, align]
+        seccheck[Sec check +]
+        cmsecis[cmsearch SECIS]
+        cmpgenes[compare genes + Sec layer +]
+    end
+    subgraph annotation [Annotation checks]
+        assess[assess +]
+        secannot[Sec annotation +]
+        rtscreen[transcript screen +]
+        cmscreen[cmsearch]
+        rank[SECIS rank +]
+    end
+    subgraph trnasec [tRNA-Sec]
+        secmarker[Secmarker +]
+        cmtrna[cmsearch tRNA-Sec]
+        trnascan[tRNAscan-SE]
+        cmptrna[compare tRNA-Sec +]
+    end
+    subgraph reporting [Reporting]
+        seqkit[seqkit stats]
+        expect[expectation check +]
+        summary[Sec summary +]
+        multiqc[MultiQC]
+    end
+
+    samplesheet -->|sp,mp,as,secis,rt| spdb
+    spdb -->|sp,as,secis,rt| selenoprofiles
+    spdb -->|mp| profq
+    profq -->|mp| mpalign
+    mpalign -->|mp| seccheck
+    selenoprofiles -->|sp,ex| cmpgenes
+    seccheck -->|mp| cmpgenes
+    selenoprofiles -->|secis| cmsecis
+    cmsecis -->|secis| cmpgenes
+    selenoprofiles -->|as,rt| assess
+    assess -->|as| secannot
+    secannot -->|as| summary
+    assess -->|rt| rtscreen
+    rtscreen -->|rt| cmscreen
+    cmscreen -->|rt| rank
+    rank -->|rt| summary
+    cmpgenes -->|ex| expect
+    expect -->|ex| summary
+    samplesheet -->|sm| secmarker
+    samplesheet -->|cm| cmtrna
+    samplesheet -->|ts| trnascan
+    secmarker -->|sm| cmptrna
+    cmtrna -->|cm| cmptrna
+    trnascan -->|ts| cmptrna
+    cmpgenes -->|sp,mp,secis| summary
+    cmptrna -->|sm,cm,ts| summary
+    samplesheet -->|qc| seqkit
+    seqkit -->|qc| multiqc
+    summary -->|sp,mp,secis,as,rt,ex,sm,cm,ts| multiqc

@@ -1,0 +1,118 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
+name: "selenoprofiles_selenoprofiles"
+description: Predict selenoprotein and selenocysteine machinery genes in nucleotide sequences with Selenoprofiles
+keywords:
+  - selenoprotein
+  - selenocysteine
+  - gene prediction
+  - genome annotation
+tools:
+  - "selenoprofiles":
+      description: "Profile-based gene finding pipeline specialised in selenoproteins and selenocysteine machinery"
+      homepage: "https://github.com/mariottigenomicslab/selenoprofiles4"
+      documentation: "https://selenoprofiles4.readthedocs.io"
+      tool_dev_url: "https://github.com/mariottigenomicslab/selenoprofiles4"
+      doi: "10.1093/bioinformatics/btq516"
+      licence: ["MIT"]
+      identifier: ""
+input:
+  - - meta:
+        type: map
+        description: Groovy Map containing sample information. e.g. `[ id:'sample1' ]`
+    - fasta:
+        type: file
+        description: Nucleotide sequences to search, optionally gzip-compressed
+        pattern: "*.{fa,fasta,fna,fa.gz,fasta.gz,fna.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_1929"
+    - profiles:
+        type: string
+        description: Comma-separated profile names or profile sets, for example `eukarya,machinery` or `prokarya`
+  - selenoprofiles_data:
+      type: directory
+      description: Selenoprofiles data directory as written by `selenoprofiles -download`, or a directory holding only profile alignments and their configuration files
+output:
+  gtf:
+    - - meta:
+          type: map
+          description: Groovy Map containing sample information. e.g. `[ id:'sample1' ]`
+      - "*.selenoprofiles.gtf":
+          type: file
+          description: Gene predictions in GTF format; Sec positions are features of type Selenocysteine
+          pattern: "*.selenoprofiles.gtf"
+          ontologies:
+            - edam: "http://edamontology.org/format_2306"
+  faa:
+    - - meta:
+          type: map
+          description: Groovy Map containing sample information. e.g. `[ id:'sample1' ]`
+      - "*.selenoprofiles.faa":
+          type: file
+          description: Predicted protein sequences
+          pattern: "*.selenoprofiles.faa"
+          ontologies:
+            - edam: "http://edamontology.org/format_1929"
+  cds:
+    - - meta:
+          type: map
+          description: Groovy Map containing sample information. e.g. `[ id:'sample1' ]`
+      - "*.selenoprofiles.cds.fa":
+          type: file
+          description: Predicted coding sequences
+          pattern: "*.selenoprofiles.cds.fa"
+          ontologies:
+            - edam: "http://edamontology.org/format_1929"
+  three_prime:
+    - - meta:
+          type: map
+          description: Groovy Map containing sample information. e.g. `[ id:'sample1' ]`
+      - "*.three_prime.fa":
+          type: file
+          description: Genomic sequence downstream of each prediction
+          pattern: "*.three_prime.fa"
+          ontologies:
+            - edam: "http://edamontology.org/format_1929"
+  alignments:
+    - - meta:
+          type: map
+          description: Groovy Map containing sample information. e.g. `[ id:'sample1' ]`
+      - "*_alignments":
+          type: directory
+          description: Directory of per-family alignments of predictions with the profile (.ali)
+          pattern: "*_alignments"
+          ontologies: []
+  results:
+    - - meta:
+          type: map
+          description: Groovy Map containing sample information. e.g. `[ id:'sample1' ]`
+      - "*_results.tar.gz":
+          type: file
+          description: Archive of the complete Selenoprofiles result folder
+          pattern: "*_results.tar.gz"
+          ontologies:
+            - edam: "http://edamontology.org/format_3989"
+  versions_selenoprofiles:
+    - - ${task.process}:
+          type: string
+          description: The name of the process
+      - selenoprofiles:
+          type: string
+          description: The name of the tool
+      - "python -c 'from selenoprofiles4._version import __version__; print(__version__)'":
+          type: eval
+          description: The expression to obtain the version of the tool
+topics:
+  versions:
+    - - ${task.process}:
+          type: string
+          description: The name of the process
+      - selenoprofiles:
+          type: string
+          description: The name of the tool
+      - "python -c 'from selenoprofiles4._version import __version__; print(__version__)'":
+          type: eval
+          description: The expression to obtain the version of the tool
+authors:
+  - "@charles-plessy"
+maintainers:
+  - "@charles-plessy"

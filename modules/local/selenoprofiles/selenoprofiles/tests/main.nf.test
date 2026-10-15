@@ -1,0 +1,87 @@
+nextflow_process {
+
+    name "Test Process SELENOPROFILES_SELENOPROFILES"
+    script "../main.nf"
+    process "SELENOPROFILES_SELENOPROFILES"
+
+    tag "modules"
+    tag "modules_nfcore"
+    tag "selenoprofiles"
+    tag "selenoprofiles/selenoprofiles"
+    tag "untar"
+
+    setup {
+        run("UNTAR") {
+            script "../../../untar/main.nf"
+            process {
+                """
+                input[0] = [
+                    [ id:'selenoprotein_profiles' ],
+                    file('https://codeload.github.com/mariottigenomicslab/selenoprotein_profiles/tar.gz/4829bc969570587c222f1ce4721038fd75c804a0', checkIfExists: true)
+                ]
+                """
+            }
+        }
+    }
+
+    test("homo_sapiens - chr22 - fasta - SELENOO") {
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test' ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/chr22/sequence/hg38.chr22.fasta', checkIfExists: true),
+                    'SELENOO'
+                ]
+                input[1] = UNTAR.out.untar.map { _meta, dir -> dir }
+                """
+            }
+        }
+
+        then {
+            assert process.success
+            assertAll(
+                { assert path(process.out.gtf[0][1]).text.contains('Selenocysteine') },
+                { assert file(process.out.results[0][1]).exists() },
+                // FASTA headers and one .ali line carry the absolute path of the target
+                { assert snapshot(
+                    process.out.gtf,
+                    process.out.faa.collect { _meta, faa -> path(faa).readLines().findAll { line -> !line.startsWith('>') } },
+                    process.out.cds.collect { _meta, cds -> path(cds).readLines().findAll { line -> !line.startsWith('>') } },
+                    process.out.three_prime,
+                    process.out.alignments.collect { _meta, dir -> file(dir).listFiles().collect { ali -> ali.name }.sort() },
+                    process.out.findAll { key, val -> key.startsWith('versions') }
+                ).match() }
+            )
+        }
+
+    }
+
+    test("homo_sapiens - chr22 - fasta - SELENOO - stub") {
+
+        options "-stub"
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test' ],
+                    file(params.modules_testdata_base_path + 'genomics/homo_sapiens/genome/chr22/sequence/hg38.chr22.fasta', checkIfExists: true),
+                    'SELENOO'
+                ]
+                input[1] = UNTAR.out.untar.map { _meta, dir -> dir }
+                """
+            }
+        }
+
+        then {
+            assert process.success
+            assertAll(
+                { assert snapshot(process.out).match() }
+            )
+        }
+
+    }
+
+}

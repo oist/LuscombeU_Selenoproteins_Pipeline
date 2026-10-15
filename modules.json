@@ -1,14 +1,59 @@
 {
-    "name": "oist/selenoproteins",
-    "homePage": "https://github.com/oist/selenoproteins",
+    "name": "oist/LuscombeU_Selenoproteins_Pipeline",
+    "homePage": "https://github.com/oist/LuscombeU_Selenoproteins_Pipeline",
     "repos": {
         "https://github.com/nf-core/modules.git": {
             "modules": {
                 "nf-core": {
+                    "infernal/cmsearch": {
+                        "branch": "master",
+                        "git_sha": "409e23bfd3515418268c43692ebea7b53a81d895",
+                        "installed_by": [
+                            "modules"
+                        ]
+                    },
+                    "miniprot/align": {
+                        "branch": "master",
+                        "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+                        "installed_by": [
+                            "modules"
+                        ],
+                        "patch": "modules/nf-core/miniprot/align/miniprot-align.diff"
+                    },
+                    "miniprot/index": {
+                        "branch": "master",
+                        "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+                        "installed_by": [
+                            "modules"
+                        ]
+                    },
                     "multiqc": {
                         "branch": "master",
                         "git_sha": "98403d15b0e50edae1f3fec5eae5e24982f1fade",
-                        "installed_by": ["modules"]
+                        "installed_by": [
+                            "modules"
+                        ]
+                    },
+                    "seqkit/stats": {
+                        "branch": "master",
+                        "git_sha": "d07a945f421a4a91ce4e5a22db63e0e7f8741607",
+                        "installed_by": [
+                            "modules"
+                        ]
+                    },
+                    "trnascanse": {
+                        "branch": "master",
+                        "git_sha": "610fdc0f12df14140cfa6164a4c8b61132d74a2e",
+                        "installed_by": [
+                            "modules"
+                        ]
+                    },
+                    "untar": {
+                        "branch": "master",
+                        "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+                        "installed_by": [
+                            "modules"
+                        ]
                     }
                 }
             },
@@ -17,17 +62,23 @@
                     "utils_nextflow_pipeline": {
                         "branch": "master",
                         "git_sha": "c2b22d85f30a706a3073387f30380704fcae013b",
-                        "installed_by": ["subworkflows"]
+                        "installed_by": [
+                            "subworkflows"
+                        ]
                     },
                     "utils_nfcore_pipeline": {
                         "branch": "master",
                         "git_sha": "a3fb7351b1fdb2b1de282b765816bbea190e86a8",
-                        "installed_by": ["subworkflows"]
+                        "installed_by": [
+                            "subworkflows"
+                        ]
                     },
                     "utils_nfschema_plugin": {
                         "branch": "master",
                         "git_sha": "a7b27fd25bfa8dcc07d299e88bd790585901a436",
-                        "installed_by": ["subworkflows"]
+                        "installed_by": [
+                            "subworkflows"
+                        ]
                     }
                 }
             }

@@ -1,0 +1,82 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
+name: "secmarker"
+description: Predict selenocysteine tRNA (tRNA-Sec) genes with Secmarker
+keywords:
+  - tRNA
+  - selenocysteine
+  - covariance model
+  - genome annotation
+tools:
+  - "secmarker":
+      description: "Search tool for selenocysteine tRNA genes based on domain-specific covariance models"
+      homepage: "https://github.com/didacs/secmarker"
+      documentation: "https://pypi.org/project/secmarker/"
+      tool_dev_url: "https://github.com/didacs/secmarker"
+      doi: "10.1371/journal.pcbi.1005383"
+      licence: ["MIT"]
+      identifier: ""
+input:
+  - - meta:
+        type: map
+        description: Groovy Map containing sample information. e.g. `[ id:'sample1' ]`
+    - fasta:
+        type: file
+        description: Nucleotide sequences to search, optionally gzip-compressed
+        pattern: "*.{fa,fasta,fna,fa.gz,fasta.gz,fna.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_1929"
+output:
+  gff:
+    - - meta:
+          type: map
+          description: Groovy Map containing sample information. e.g. `[ id:'sample1' ]`
+      - "*.trnasec.gff":
+          type: file
+          description: tRNA-Sec predictions in GFF format; empty when none is found
+          pattern: "*.trnasec.gff"
+          ontologies:
+            - edam: "http://edamontology.org/format_1975"
+  fasta:
+    - - meta:
+          type: map
+          description: Groovy Map containing sample information. e.g. `[ id:'sample1' ]`
+      - "*.trnasec.fa":
+          type: file
+          description: tRNA-Sec sequences
+          pattern: "*.trnasec.fa"
+          ontologies:
+            - edam: "http://edamontology.org/format_1929"
+  structure:
+    - - meta:
+          type: map
+          description: Groovy Map containing sample information. e.g. `[ id:'sample1' ]`
+      - "*.trnasec.ss":
+          type: file
+          description: tRNA-Sec secondary structures in text format
+          pattern: "*.trnasec.ss"
+          ontologies: []
+  versions_secmarker:
+    - - ${task.process}:
+          type: string
+          description: The name of the process
+      - secmarker:
+          type: string
+          description: The name of the tool
+      - "python -c 'from secmarker._version import __version__; print(__version__)'":
+          type: eval
+          description: The expression to obtain the version of the tool
+topics:
+  versions:
+    - - ${task.process}:
+          type: string
+          description: The name of the process
+      - secmarker:
+          type: string
+          description: The name of the tool
+      - "python -c 'from secmarker._version import __version__; print(__version__)'":
+          type: eval
+          description: The expression to obtain the version of the tool
+authors:
+  - "@charles-plessy"
+maintainers:
+  - "@charles-plessy"

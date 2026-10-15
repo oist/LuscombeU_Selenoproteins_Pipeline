@@ -1,7 +1,7 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://raw.githubusercontent.com/oist/selenoproteins/main/assets/schema_input.json",
-    "title": "oist/selenoproteins pipeline - params.input schema",
+    "$id": "https://raw.githubusercontent.com/oist/LuscombeU_Selenoproteins_Pipeline/main/assets/schema_input.json",
+    "title": "oist/LuscombeU_Selenoproteins_Pipeline pipeline - params.input schema",
     "description": "Schema for the file provided with params.input",
     "type": "array",
     "items": {
@@ -9,25 +9,38 @@
         "properties": {
             "sample": {
                 "type": "string",
-                "pattern": "^\\S+$",
-                "errorMessage": "Sample name must be provided and cannot contain spaces",
+                "pattern": "^[A-Za-z0-9_.-]+$",
+                "errorMessage": "Genome name must be provided and may contain only letters, digits, '_', '.' and '-'",
                 "meta": ["id"]
             },
-            "fastq_1": {
+            "fasta": {
                 "type": "string",
                 "format": "file-path",
                 "exists": true,
-                "pattern": "^([\\S\\s]*\\/)?[^\\s\\/]+\\.f(ast)?q\\.gz$",
-                "errorMessage": "FastQ file for reads 1 must be provided, cannot contain spaces and must have extension '.fq.gz' or '.fastq.gz'"
+                "pattern": "^([\\S\\s]*\\/)?[^\\s\\/]+\\.(fa|fasta|fna)(\\.gz)?$",
+                "errorMessage": "Genome FASTA must be provided, cannot contain spaces and must have extension '.fa', '.fasta' or '.fna', optionally followed by '.gz'"
             },
-            "fastq_2": {
+            "domain": {
+                "type": "string",
+                "enum": ["eukaryota", "bacteria", "archaea"],
+                "errorMessage": "Domain must be one of 'eukaryota', 'bacteria' or 'archaea'",
+                "meta": ["domain"]
+            },
+            "profiles": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_,.-]+$",
+                "errorMessage": "Profiles must be a comma-separated list of Selenoprofiles profile or profile-set names, without spaces",
+                "meta": ["profiles"]
+            },
+            "annotation": {
                 "type": "string",
                 "format": "file-path",
                 "exists": true,
-                "pattern": "^([\\S\\s]*\\/)?[^\\s\\/]+\\.f(ast)?q\\.gz$",
-                "errorMessage": "FastQ file for reads 2 cannot contain spaces and must have extension '.fq.gz' or '.fastq.gz'"
+                "pattern": "^([\\S\\s]*\\/)?[^\\s\\/]+\\.gff3?(\\.gz)?$",
+                "errorMessage": "Annotation must be a GFF3 file with extension '.gff' or '.gff3', optionally followed by '.gz'"
             }
         },
-        "required": ["sample", "fastq_1"]
-    }
+        "required": ["sample", "fasta", "domain"]
+    },
+    "allOf": [{ "uniqueEntries": ["sample"] }]
 }

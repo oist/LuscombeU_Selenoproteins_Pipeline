@@ -1,0 +1,221 @@
+{
+    "homo_sapiens - chr22 - fasta - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.trnasec.gff:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.trnasec.fa:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.trnasec.ss:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "3": [
+                    [
+                        "SECMARKER",
+                        "secmarker",
+                        "1.0.0"
+                    ]
+                ],
+                "fasta": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.trnasec.fa:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "gff": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.trnasec.gff:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "structure": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.trnasec.ss:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions_secmarker": [
+                    [
+                        "SECMARKER",
+                        "secmarker",
+                        "1.0.0"
+                    ]
+                ]
+            }
+        ],
+        "timestamp": "2026-10-12T06:12:13.040213752",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "25.10.4"
+        }
+    },
+    "saccharomyces_cerevisiae - genome - fasta - no tRNA-Sec": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.trnasec.gff:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.trnasec.fa:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.trnasec.ss:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "3": [
+                    [
+                        "SECMARKER",
+                        "secmarker",
+                        "1.0.0"
+                    ]
+                ],
+                "fasta": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.trnasec.fa:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "gff": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.trnasec.gff:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "structure": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.trnasec.ss:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions_secmarker": [
+                    [
+                        "SECMARKER",
+                        "secmarker",
+                        "1.0.0"
+                    ]
+                ]
+            }
+        ],
+        "timestamp": "2026-10-12T07:52:54.444680481",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "25.10.4"
+        }
+    },
+    "homo_sapiens - chr22 - fasta": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.trnasec.gff:md5,acd9e97855ec52a37f83302e9909e1d9"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.trnasec.fa:md5,03e24f3a148061528781e27499044dd4"
+                    ]
+                ],
+                "2": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.trnasec.ss:md5,bf272aac9f982e321be5414694423f61"
+                    ]
+                ],
+                "3": [
+                    [
+                        "SECMARKER",
+                        "secmarker",
+                        "1.0.0"
+                    ]
+                ],
+                "fasta": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.trnasec.fa:md5,03e24f3a148061528781e27499044dd4"
+                    ]
+                ],
+                "gff": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.trnasec.gff:md5,acd9e97855ec52a37f83302e9909e1d9"
+                    ]
+                ],
+                "structure": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.trnasec.ss:md5,bf272aac9f982e321be5414694423f61"
+                    ]
+                ],
+                "versions_secmarker": [
+                    [
+                        "SECMARKER",
+                        "secmarker",
+                        "1.0.0"
+                    ]
+                ]
+            }
+        ],
+        "timestamp": "2026-10-12T06:12:00.484028147",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "25.10.4"
+        }
+    }
+}

@@ -1,0 +1,59 @@
+{
+    "homo_sapiens - chr22 - gtf - gff3 - fasta - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.transcripts.tsv:md5,ed23d36cdaf98e7c18f8c6355dd1a640"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.genes.tsv:md5,ed23d36cdaf98e7c18f8c6355dd1a640"
+                    ]
+                ],
+                "2": [
+                    [
+                        "SELENOPROFILES_ASSESS",
+                        "selenoprofiles",
+                        "4.5.8"
+                    ]
+                ],
+                "genes": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.genes.tsv:md5,ed23d36cdaf98e7c18f8c6355dd1a640"
+                    ]
+                ],
+                "transcripts": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.transcripts.tsv:md5,ed23d36cdaf98e7c18f8c6355dd1a640"
+                    ]
+                ],
+                "versions_selenoprofiles": [
+                    [
+                        "SELENOPROFILES_ASSESS",
+                        "selenoprofiles",
+                        "4.5.8"
+                    ]
+                ]
+            }
+        ],
+        "timestamp": "2026-10-12T06:12:48.418638523",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "25.10.4"
+        }
+    }
+}

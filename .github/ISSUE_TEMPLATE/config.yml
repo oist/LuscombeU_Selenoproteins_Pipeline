@@ -4,4 +4,4 @@ contact_links:
     about: Please join the nf-core community here
   - name: "Slack #selenoproteins channel"
     url: https://nfcore.slack.com/channels/selenoproteins
-    about: Discussion about the oist/selenoproteins pipeline
+    about: Discussion about the oist/LuscombeU_Selenoproteins_Pipeline pipeline

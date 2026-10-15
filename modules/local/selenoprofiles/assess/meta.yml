@@ -1,0 +1,84 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
+name: "selenoprofiles_assess"
+description: Assess a genome annotation against Selenoprofiles selenoprotein predictions
+keywords:
+  - selenoprotein
+  - annotation
+  - assessment
+tools:
+  - "selenoprofiles":
+      description: "Profile-based gene finding pipeline specialised in selenoproteins and selenocysteine machinery"
+      homepage: "https://github.com/mariottigenomicslab/selenoprofiles4"
+      documentation: "https://selenoprofiles4.readthedocs.io"
+      tool_dev_url: "https://github.com/mariottigenomicslab/selenoprofiles4"
+      doi: "10.1093/bioinformatics/btq516"
+      licence: ["MIT"]
+      identifier: ""
+input:
+  - - meta:
+        type: map
+        description: Groovy Map containing sample information. e.g. `[ id:'sample1' ]`
+    - selenoprofiles_gtf:
+        type: file
+        description: Selenoprofiles predictions in GTF format
+        pattern: "*.gtf"
+        ontologies:
+          - edam: "http://edamontology.org/format_2306"
+    - annotation:
+        type: file
+        description: Genome annotation to assess in GFF3 format, optionally gzip-compressed; the CDS ID attribute identifies the transcript
+        pattern: "*.{gff,gff3,gff.gz,gff3.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_1975"
+    - fasta:
+        type: file
+        description: Genome sequence, optionally gzip-compressed
+        pattern: "*.{fa,fasta,fna,fa.gz,fasta.gz,fna.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_1929"
+output:
+  transcripts:
+    - - meta:
+          type: map
+          description: Groovy Map containing sample information. e.g. `[ id:'sample1' ]`
+      - "*.transcripts.tsv":
+          type: file
+          description: Annotation status of each annotated transcript overlapping a prediction
+          pattern: "*.transcripts.tsv"
+          ontologies:
+            - edam: "http://edamontology.org/format_3475"
+  genes:
+    - - meta:
+          type: map
+          description: Groovy Map containing sample information. e.g. `[ id:'sample1' ]`
+      - "*.genes.tsv":
+          type: file
+          description: Annotation status aggregated per prediction
+          pattern: "*.genes.tsv"
+          ontologies:
+            - edam: "http://edamontology.org/format_3475"
+  versions_selenoprofiles:
+    - - ${task.process}:
+          type: string
+          description: The name of the process
+      - selenoprofiles:
+          type: string
+          description: The name of the tool
+      - "python -c 'from selenoprofiles4._version import __version__; print(__version__)'":
+          type: eval
+          description: The expression to obtain the version of the tool
+topics:
+  versions:
+    - - ${task.process}:
+          type: string
+          description: The name of the process
+      - selenoprofiles:
+          type: string
+          description: The name of the tool
+      - "python -c 'from selenoprofiles4._version import __version__; print(__version__)'":
+          type: eval
+          description: The expression to obtain the version of the tool
+authors:
+  - "@charles-plessy"
+maintainers:
+  - "@charles-plessy"

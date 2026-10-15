@@ -1,0 +1,32 @@
+nextflow_process {
+
+    name "Test Process SELENOPROFILES_DOWNLOAD"
+    script "../main.nf"
+    process "SELENOPROFILES_DOWNLOAD"
+
+    tag "modules"
+    tag "modules_nfcore"
+    tag "selenoprofiles"
+    tag "selenoprofiles/download"
+
+    test("selenoprofiles_data - stub") {
+
+        options "-stub"
+
+        when {
+            process {
+                """
+                """
+            }
+        }
+
+        then {
+            assert process.success
+            assertAll(
+                { assert snapshot(process.out).match() }
+            )
+        }
+
+    }
+
+}

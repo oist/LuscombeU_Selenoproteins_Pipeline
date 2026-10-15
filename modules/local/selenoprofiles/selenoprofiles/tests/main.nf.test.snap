@@ -1,0 +1,187 @@
+{
+    "homo_sapiens - chr22 - fasta - SELENOO - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.selenoprofiles.gtf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.selenoprofiles.faa:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.selenoprofiles.cds.fa:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "3": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.three_prime.fa:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "4": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        [
+                            
+                        ]
+                    ]
+                ],
+                "5": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_results.tar.gz:md5,1276481102f218c981e0324180bafd9f"
+                    ]
+                ],
+                "6": [
+                    [
+                        "SELENOPROFILES_SELENOPROFILES",
+                        "selenoprofiles",
+                        "4.5.8"
+                    ]
+                ],
+                "alignments": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        [
+                            
+                        ]
+                    ]
+                ],
+                "cds": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.selenoprofiles.cds.fa:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "faa": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.selenoprofiles.faa:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "gtf": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.selenoprofiles.gtf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "results": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_results.tar.gz:md5,1276481102f218c981e0324180bafd9f"
+                    ]
+                ],
+                "three_prime": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.three_prime.fa:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions_selenoprofiles": [
+                    [
+                        "SELENOPROFILES_SELENOPROFILES",
+                        "selenoprofiles",
+                        "4.5.8"
+                    ]
+                ]
+            }
+        ],
+        "timestamp": "2026-10-12T06:07:48.922579244",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "25.10.4"
+        }
+    },
+    "homo_sapiens - chr22 - fasta - SELENOO": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "test.selenoprofiles.gtf:md5,babb03839283aa8edff780d0d5f0bcf9"
+                ]
+            ],
+            [
+                [
+                    "MAVYRAALGASLAAARLLPLGRCSPSPAPRSTLSGAAMEPAPRWLAGLRFDNRALRALPV",
+                    "EAPPPGPEGAPSAPRPVPGACFTRVQPTPLRQPRLVALSEPALALLGLGAPPAREAEAEA",
+                    "ALFFSGNALLPGAEPAAHCYCGHQFGQFAGQLGDGAAMYLGEVCTATGERWELQLKGAGP",
+                    "TPFSRQADGRKVLRSSIREFLCSEAMFHLGVPTTRAGACVTSESTVVRDVFYDGNPKYEQ",
+                    "CTVVLRVASTFIRFGSFEIFKSADEHTGRAGPSVGRNDIRVQLLDYVISSFYPEIQAAHA",
+                    "SDSVQRNAAFFREVTRRTARMVAEWQCVGFCHGVLNTDNMSILGLTIDYGPFGFLDRYDP",
+                    "DHVCNASDNTGRYAYSKQPEVCRWNLRKLAEALQPELPLELGEAILAEEFDAEFQRHYLQ",
+                    "KMRRKLGLVQVELEEDGALVSKLLETMHLTGADFTNTFYLLSSFPVELESPGLAEFLARL",
+                    "MEQCASLEELRLAFRPQMDPRQLSMMLMLAQSNPQLFALMGTRAGIARELERVEQQSRLE",
+                    "QLSAAELQSRNQGHWADWLQAYRARLDKDLEGAGDAAAWQAEHVRVMHANNPKYVLRNYI",
+                    "AQNAIEAAERGDFSEVRRVLKLLETPYHCEAGAATDAEATEADGADGRQRSYSSKPPLWA",
+                    "AELCVTUSS"
+                ]
+            ],
+            [
+                [
+                    "ATGGCCGTATACAGGGCAGCGCTCGGGGCTTCGCTCGCGGCTGCCCGACTCTTGCCCCTCGGTCGCTGTTCCCCGTCGCCGGCGCCCCGCTCTACGTTGTCGGGCGCCGCCATGGAGCCCGCGCCTCGCTGGCTGGCGGGGCTGCGCTTCGACAACCGCGCCCTGCGCGCCCTGCCCGTGGAGGCGCCGCCGCCCGGTCCCGAGGGCGCCCCGTCCGCGCCGCGGCCCGTGCCCGGGGCCTGCTTCACCCGCGTGCAGCCCACCCCGCTGCGGCAGCCGCGCCTCGTGGCGCTGTCAGAGCCCGCGCTGGCGTTGCTGGGCCTGGGCGCGCCGCCCGCGCGCGAGGCCGAGGCCGAGGCCGCGCTGTTCTTCAGCGGCAACGCGCTCCTGCCGGGCGCCGAGCCCGCCGCGCACTGCTACTGCGGCCACCAATTCGGCCAGTTCGCCGGGCAGCTGGGCGACGGCGCCGCCATGTACCTGGGCGAGGTGTGCACGGCGACCGGCGAGCGCTGGGAGCTGCAGCTCAAGGGCGCCGGGCCCACGCCCTTCTCCAGACAGGCCGACGGTCGCAAGGTCCTACGGTCAAGCATCCGGGAGTTTCTATGCAGCGAAGCCATGTTCCACCTGGGAGTCCCCACCACACGGGCCGGCGCCTGCGTCACGTCCGAGTCCACGGTGGTGCGCGACGTGTTCTATGATGGTAATCCCAAATATGAACAATGCACGGTTGTGTTGCGTGTAGCTTCCACTTTCATAAGGTTTGGATCCTTTGAGATTTTTAAGTCTGCAGATGAGCACACAGGGCGTGCAGGCCCCAGCGTGGGGAGGAACGACATTCGAGTGCAGCTGCTCGACTATGTCATCAGCTCCTTTTACCCCGAGATCCAGGCTGCTCATGCCAGCGACAGCGTGCAGAGAAATGCTGCCTTCTTCCGGGAGGTGACGCGGCGCACGGCGCGGATGGTGGCCGAGTGGCAGTGTGTGGGCTTCTGCCACGGCGTGCTCAACACCGACAACATGAGCATCCTGGGGCTCACCATCGACTACGGGCCCTTTGGCTTCCTGGACAGGTACGACCCCGACCACGTGTGCAATGCCTCCGACAACACCGGCCGCTACGCGTACAGCAAGCAGCCCGAGGTGTGCAGGTGGAACCTGCGGAAGCTGGCCGAGGCCCTGCAGCCGGAACTGCCCCTGGAGCTGGGGGAGGCCATCCTGGCCGAGGAGTTTGACGCCGAGTTCCAAAGGCACTACCTGCAGAAGATGCGCAGGAAGCTGGGCCTCGTGCAGGTGGAGCTGGAGGAAGACGGGGCGCTGGTGTCCAAGCTCCTGGAGACCATGCATCTGACCGGTGCCGACTTCACAAACACCTTCTACTTGCTGAGCTCCTTCCCAGTGGAGCTAGAGTCGCCAGGCCTGGCGGAATTCCTGGCCAGGCTGATGGAGCAGTGTGCCTCCCTGGAGGAGCTGAGGCTGGCCTTCCGGCCCCAGATGGATCCCCGGCAGCTATCCATGATGCTGATGCTGGCGCAGTCAAACCCGCAGCTGTTCGCGCTTATGGGCACCCGGGCAGGCATCGCCAGGGAGCTGGAGCGTGTGGAGCAGCAGTCTCGGCTGGAGCAGCTGAGTGCGGCAGAGCTGCAGAGCAGGAACCAGGGCCACTGGGCTGACTGGCTACAGGCGTACAGAGCCCGGCTGGACAAGGACCTGGAAGGCGCTGGGGACGCTGCCGCCTGGCAGGCTGAGCACGTGCGCGTGATGCACGCCAACAACCCGAAGTACGTGCTGAGGAACTACATCGCGCAGAATGCCATCGAGGCTGCCGAGCGCGGGGACTTCTCAGAGGTGCGGCGGGTGCTGAAACTACTGGAGACCCCTTACCACTGCGAGGCGGGGGCCGCCACAGACGCCGAGGCCACGGAAGCCGACGGGGCGGACGGCAGGCAGCGCTCCTACAGCAGTAAGCCCCCGCTCTGGGCAGCAGAACTGTGCGTGACATGATCTTCGTAA"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "test.three_prime.fa:md5,da205b57fc2908cda4d1422a67b4d70c"
+                ]
+            ],
+            [
+                [
+                    "SELENOO.ali"
+                ]
+            ],
+            {
+                "versions_selenoprofiles": [
+                    [
+                        "SELENOPROFILES_SELENOPROFILES",
+                        "selenoprofiles",
+                        "4.5.8"
+                    ]
+                ]
+            }
+        ],
+        "timestamp": "2026-10-12T06:07:33.894897686",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "25.10.4"
+        }
+    }
+}

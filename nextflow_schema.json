@@ -1,7 +1,7 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://raw.githubusercontent.com/oist/selenoproteins/main/nextflow_schema.json",
-    "title": "oist/selenoproteins pipeline parameters",
+    "$id": "https://raw.githubusercontent.com/oist/LuscombeU_Selenoproteins_Pipeline/main/nextflow_schema.json",
+    "title": "oist/LuscombeU_Selenoproteins_Pipeline pipeline parameters",
     "description": "Annotation of selenoprotein genes, Sec machinery and tRNA-Sec in genome assemblies",
     "type": "object",
     "$defs": {
@@ -40,6 +40,120 @@
                     "type": "string",
                     "description": "MultiQC report title. Printed as page header, used for filename if not otherwise specified.",
                     "fa_icon": "fas fa-file-signature"
+                }
+            }
+        },
+        "selenoprotein_gene_options": {
+            "title": "Selenoprotein gene options",
+            "type": "object",
+            "fa_icon": "fas fa-dna",
+            "description": "Options for the prediction of selenoprotein genes and their supporting evidence.",
+            "properties": {
+                "selenoprofiles_data": {
+                    "type": "string",
+                    "format": "path",
+                    "fa_icon": "fas fa-database",
+                    "description": "Selenoprofiles data directory or archive. If unset, the pipeline downloads it with `selenoprofiles -download`.",
+                    "help_text": "A directory written by `selenoprofiles -download`, or a directory or `.tar.gz` archive holding only the profile alignments and their `.fa.config` files. Profiles that use tag or gene-ontology filters need the full data directory."
+                },
+                "skip_miniprot": {
+                    "type": "boolean",
+                    "fa_icon": "fas fa-forward",
+                    "description": "Skip the miniprot cross-check of Selenoprofiles Sec sites."
+                },
+                "skip_secis": {
+                    "type": "boolean",
+                    "fa_icon": "fas fa-forward",
+                    "description": "Skip the SECIS search in the 3' flanks of eukaryotic predictions."
+                },
+                "secis_cm": {
+                    "type": "string",
+                    "default": "https://rfam.org/family/RF00031/cm",
+                    "fa_icon": "fas fa-file",
+                    "description": "Covariance model file for the SECIS search.",
+                    "help_text": "May contain several models. The pipeline runs cmsearch with `--cut_ga` unless `--secis_min_bits` is set, so each model needs gathering thresholds, as Rfam models have. A model built from Oikopleura dioica SECIS elements is provided: `${projectDir}/assets/secis/oikopleura_dioica_secis.cm`; use it with `--secis_min_bits`, as it has no gathering threshold."
+                },
+                "secis_min_bits": {
+                    "type": "number",
+                    "fa_icon": "fas fa-filter",
+                    "description": "Report SECIS hits from this bit score instead of using the model's gathering threshold (cmsearch -T).",
+                    "help_text": "Weak hits are then listed with their E-value in the gene tables; only hits that cmsearch includes (E-value of 0.01 or less) count as SECIS support in the summary."
+                }
+            }
+        },
+        "trnasec_options": {
+            "title": "tRNA-Sec options",
+            "type": "object",
+            "fa_icon": "fas fa-dna",
+            "description": "Options for the prediction of selenocysteine tRNA genes.",
+            "properties": {
+                "trnasec_tools": {
+                    "type": "string",
+                    "default": "secmarker,cmsearch",
+                    "pattern": "^(secmarker|cmsearch|trnascanse)(,(secmarker|cmsearch|trnascanse))*$",
+                    "fa_icon": "fas fa-tools",
+                    "description": "Comma-separated tRNA-Sec tools to run: secmarker, cmsearch, trnascanse.",
+                    "help_text": "Loci found by two or more tools count as supported in the Sec trait call. tRNAscan-SE is off by default: Debian distributes it in non-free because of one source file."
+                },
+                "trnasec_cm": {
+                    "type": "string",
+                    "default": "https://rfam.org/family/RF01852/cm",
+                    "fa_icon": "fas fa-file",
+                    "description": "Covariance model file for the tRNA-Sec search with cmsearch, which uses `--cut_ga`."
+                }
+            }
+        },
+        "annotation_check_options": {
+            "title": "Annotation check options",
+            "type": "object",
+            "fa_icon": "fas fa-clipboard-check",
+            "description": "Checks of the reference annotation given in the samplesheet's annotation column (GFF3 with mRNA, exon and CDS features).",
+            "properties": {
+                "readthrough_screen": {
+                    "type": "boolean",
+                    "fa_icon": "fas fa-search",
+                    "description": "Screen all annotated transcripts for TGA codons at the edges or inside of their CDS, ranked by the SECIS score of their 3' UTR.",
+                    "help_text": "Finds selenoprotein genes whose annotated protein starts after the Sec codon, ends at it, or translates it as X. Needs exon features in the annotation."
+                },
+                "screen_cm": {
+                    "type": "string",
+                    "format": "file-path",
+                    "fa_icon": "fas fa-file",
+                    "description": "Covariance model for the transcript screen; defaults to `--secis_cm`.",
+                    "help_text": "The screen reports hits of 10 bits or more, so models without gathering thresholds, such as `${projectDir}/assets/secis/oikopleura_dioica_secis.cm`, can be used."
+                }
+            }
+        },
+        "expectation_options": {
+            "title": "Expectation options",
+            "type": "object",
+            "fa_icon": "fas fa-list-check",
+            "description": "Compare the Sec sites found with an expected selenoproteome.",
+            "properties": {
+                "expectation": {
+                    "type": "string",
+                    "format": "file-path",
+                    "fa_icon": "fas fa-file-csv",
+                    "description": "Expectation table (layout of selenoprotein_profiles Expectation_table.csv).",
+                    "help_text": "An entry for Oikopleura is provided: `${projectDir}/assets/expectations/oikopleura_dioica.csv` (lineage `Oikopleura`). Counts are compared per family."
+                },
+                "expectation_lineage": {
+                    "type": "string",
+                    "fa_icon": "fas fa-sitemap",
+                    "description": "Row of the expectation table to use, e.g. `Oikopleura`."
+                },
+                "expectation_copies": {
+                    "type": "integer",
+                    "default": 1,
+                    "minimum": 1,
+                    "fa_icon": "fas fa-clone",
+                    "description": "Expected copies of each gene, e.g. 2 for a diploid assembly with both haplotypes."
+                },
+                "expectation_hemizygous": {
+                    "type": "string",
+                    "default": "",
+                    "fa_icon": "fas fa-venus-mars",
+                    "description": "Comma-separated families counted once whatever `--expectation_copies`, e.g. `TXNRD,SELENOT` for the X-specific region of male O. dioica assemblies."
                 }
             }
         },
@@ -197,6 +311,18 @@
     "allOf": [
         {
             "$ref": "#/$defs/input_output_options"
+        },
+        {
+            "$ref": "#/$defs/selenoprotein_gene_options"
+        },
+        {
+            "$ref": "#/$defs/trnasec_options"
+        },
+        {
+            "$ref": "#/$defs/annotation_check_options"
+        },
+        {
+            "$ref": "#/$defs/expectation_options"
         },
         {
             "$ref": "#/$defs/institutional_config_options"

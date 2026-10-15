@@ -1,61 +1,80 @@
-# oist/selenoproteins: Usage
+# oist/LuscombeU_Selenoproteins_Pipeline: Usage
 
 > _Documentation of pipeline parameters is generated automatically from the pipeline schema and can no longer be found in markdown files._
 
 ## Introduction
 
-<!-- TODO nf-core: Add documentation about anything specific to running your pipeline. For general topics, please point to (and add to) the main nf-core website. -->
-
 ## Samplesheet input
 
-You will need to create a samplesheet with information about the samples you would like to analyse before running the pipeline. Use this parameter to specify its location. It has to be a comma-separated file with 3 columns, and a header row as shown in the examples below.
+The samplesheet is a comma-separated file with a header row and one genome per row. Pass it with `--input`.
 
 ```bash
 --input '[path to samplesheet file]'
 ```
 
-### Multiple runs of the same sample
-
-The `sample` identifiers have to be the same when you have re-sequenced the same sample more than once e.g. to increase sequencing depth. The pipeline will concatenate the raw reads before performing any downstream analysis. Below is an example for the same sample sequenced across 3 lanes:
-
-```csv title="samplesheet.csv"
-sample,fastq_1,fastq_2
-CONTROL_REP1,AEG588A1_S1_L002_R1_001.fastq.gz,AEG588A1_S1_L002_R2_001.fastq.gz
-CONTROL_REP1,AEG588A1_S1_L003_R1_001.fastq.gz,AEG588A1_S1_L003_R2_001.fastq.gz
-CONTROL_REP1,AEG588A1_S1_L004_R1_001.fastq.gz,AEG588A1_S1_L004_R2_001.fastq.gz
-```
-
-### Full samplesheet
-
-The pipeline will auto-detect whether a sample is single- or paired-end using the information provided in the samplesheet. The samplesheet can have as many columns as you desire, however, there is a strict requirement for the first 3 columns to match those defined in the table below.
-
-A final samplesheet file consisting of both single- and paired-end data may look something like the one below. This is for 6 samples, where `TREATMENT_REP3` has been sequenced twice.
+| Column       | Required | Description                                                                                                                                                                                                                                               |
+| ------------ | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `sample`     | yes      | Genome name, unique in the samplesheet. Letters, digits, `_`, `.` and `-` only.                                                                                                                                                                           |
+| `fasta`      | yes      | Genome assembly in FASTA format, optionally gzip-compressed (`.fa`, `.fasta`, `.fna`, with or without `.gz`).                                                                                                                                             |
+| `domain`     | yes      | `eukaryota`, `bacteria` or `archaea`. Selects the default profiles, disables intron prediction for prokaryotes, restricts the SECIS search to eukaryotes and sets the tRNAscan-SE model.                                                                  |
+| `profiles`   | no       | Comma-separated Selenoprofiles profiles or profile sets. Defaults: `eukarya,machinery` for eukaryotes, `prokarya` for bacteria and archaea. The sets are listed in `assets/profile_sets.tsv`.                                                             |
+| `annotation` | no       | Reference annotation of the genome in GFF3 format, optionally gzip-compressed. When given, `selenoprofiles assess` reports how it represents each predicted selenoprotein. The CDS `ID` attribute must identify the transcript, as in Ensembl GFF3 files. |
 
 ```csv title="samplesheet.csv"
-sample,fastq_1,fastq_2
-CONTROL_REP1,AEG588A1_S1_L002_R1_001.fastq.gz,AEG588A1_S1_L002_R2_001.fastq.gz
-CONTROL_REP2,AEG588A2_S2_L002_R1_001.fastq.gz,AEG588A2_S2_L002_R2_001.fastq.gz
-CONTROL_REP3,AEG588A3_S3_L002_R1_001.fastq.gz,AEG588A3_S3_L002_R2_001.fastq.gz
-TREATMENT_REP1,AEG588A4_S4_L003_R1_001.fastq.gz,
-TREATMENT_REP2,AEG588A5_S5_L003_R1_001.fastq.gz,
-TREATMENT_REP3,AEG588A6_S6_L003_R1_001.fastq.gz,
-TREATMENT_REP3,AEG588A6_S6_L004_R1_001.fastq.gz,
+sample,fasta,domain,profiles,annotation
+human,GRCh38.fa.gz,eukaryota,,GRCh38.gff3.gz
+ecoli,ecoli_k12.fna,bacteria,,
 ```
 
-| Column    | Description                                                                                                                                                                            |
-| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `sample`  | Custom sample name. This entry will be identical for multiple sequencing libraries/runs from the same sample. Spaces in sample names are automatically converted to underscores (`_`). |
-| `fastq_1` | Full path to FastQ file for Illumina short reads 1. File has to be gzipped and have the extension ".fastq.gz" or ".fq.gz".                                                             |
-| `fastq_2` | Full path to FastQ file for Illumina short reads 2. File has to be gzipped and have the extension ".fastq.gz" or ".fq.gz".                                                             |
+An [example samplesheet](../assets/test/samplesheet_test.csv) is used by the test profile.
 
-An [example samplesheet](../assets/samplesheet.csv) has been provided with the pipeline.
+## Reference data
+
+Selenoprofiles needs its profile alignments. Profiles with tag or gene-ontology filters also need the gene-ontology data and the tag database that `selenoprofiles -download` fetches from the Selenoprofiles authors' server. Without `--selenoprofiles_data`, the pipeline runs that download; the compute environment then needs network access to that server. To reuse a download, pass the directory with `--selenoprofiles_data`. A directory or `.tar.gz` archive holding only the profile alignments is also accepted, for profiles that need no tag or gene-ontology data.
+
+The SECIS and tRNA-Sec searches with cmsearch use the covariance models given by `--secis_cm` and `--trnasec_cm`, by default the Rfam models RF00031 (SECIS_1) and RF01852 (tRNA-Sec). The models need gathering thresholds, as Rfam models have.
+
+## Annotation checks
+
+When the samplesheet gives an annotation (GFF3 with mRNA or transcript, exon and CDS features), the pipeline:
+
+- runs `selenoprofiles assess`;
+- classifies how the annotation treats each predicted Sec codon, with the classes of Ticó et al. 2026 (PLoS Comput Biol 22:e1013885): Well annotated (split into Sec declared or not, e.g. translated as X), Stop codon, Skipped, Downstream, Upstream, Out of frame, Spliced and Absent, at gene and transcript level;
+- with `--readthrough_screen`, screens every annotated transcript for a TGA that may encode Sec: upstream of the CDS start with an ATG further upstream, through a TGA stop codon, or inside the CDS. Candidates are ranked by the best SECIS hit in their 3′ UTR (`--screen_cm`, default `--secis_cm`); transcripts with a strong SECIS hit and no TGA event are listed too, as their 3′ UTR may contain an unannotated gene.
+
+For _Oikopleura dioica_, a SECIS model built from its own elements is provided in `assets/secis/oikopleura_dioica_secis.cm`. A second model, `assets/secis/appendicularia_secis.cm`, was trained on SECIS elements of six appendicularian genomes (both _O. dioica_ cryptic species, _O. albicans_, _O. vanhoeffeni_, _O. longicauda_, _Fritillaria borealis_); it is more sensitive across species but scores some _O. dioica_ intergenic regions up to about 30 bits, so prefer the _O. dioica_ model for genome-wide scans in _O. dioica_. Neither model has a gathering threshold, so use it with `--secis_min_bits` (for example 15) for the SECIS step:
+
+```bash
+--secis_cm ${projectDir}/assets/secis/oikopleura_dioica_secis.cm --secis_min_bits 15 --readthrough_screen
+```
+
+## Sec codon layer
+
+Each genome gets `compare/<sample>.sec_codons.gff3`: one `stop_codon_redefined_as_selenocysteine` feature per Sec codon found by Selenoprofiles and/or miniprot, with the family, the support and the SECIS score. Following Ticó et al. 2026 (Fig 5), give this layer to a gene annotation pipeline as high-scoring evidence rather than using the Selenoprofiles gene models, which are less reliable away from the Sec codon.
+
+## Expected selenoproteome
+
+With `--expectation` and `--expectation_lineage`, the Sec sites of each genome are counted per family and compared with the expectation. For _Oikopleura dioica_:
+
+```bash
+--expectation ${projectDir}/assets/expectations/oikopleura_dioica.csv --expectation_lineage Oikopleura
+# diploid assemblies of males (XY): --expectation_copies 2 --expectation_hemizygous TXNRD,SELENOT
+```
+
+Missing families are not always absent genes: SELENOT, SEPHS2 and SELENOS are missed by Selenoprofiles 4.5.8 in _O. dioica_ and need the annotation checks or a manual search.
+
+## Interpretation limits
+
+- Selenoprofiles is homology-based: it finds members of known selenoprotein families only.
+- The Sec trait call (`present`, `absent`, `inconsistent`) combines selenoprotein genes with supported tRNA-Sec loci: found by two or more tools and, when Secmarker reports the locus, with the G73 discriminator base of functional tRNA-Sec genes. An `absent` call can also result from an incomplete assembly; check the assembly statistics in the report.
+- SECIS hits are reported as evidence and do not filter predictions. Rfam has no archaeal SECIS model, and the pipeline does not search bacterial SECIS elements, which lie inside the coding sequence.
 
 ## Running the pipeline
 
 The typical command for running the pipeline is as follows:
 
 ```bash
-nextflow run oist/selenoproteins --input ./samplesheet.csv --outdir ./results  -profile docker
+nextflow run oist/LuscombeU_Selenoproteins_Pipeline --input ./samplesheet.csv --outdir ./results  -profile docker
 ```
 
 This will launch the pipeline with the `docker` configuration profile. See below for more information about profiles.
@@ -79,7 +98,7 @@ Pipeline settings can be provided in a `yaml` or `json` file via `-params-file <
 The above pipeline run specified with a params file in yaml format:
 
 ```bash
-nextflow run oist/selenoproteins -profile docker -params-file params.yaml
+nextflow run oist/LuscombeU_Selenoproteins_Pipeline -profile docker -params-file params.yaml
 ```
 
 with:
@@ -97,14 +116,14 @@ You can also generate such `YAML`/`JSON` files via [nf-core/launch](https://nf-c
 When you run the above command, Nextflow automatically pulls the pipeline code from GitHub and stores it as a cached version. When running the pipeline after this, it will always use the cached version if available - even if the pipeline has been updated since. To make sure that you're running the latest version of the pipeline, make sure that you regularly update the cached version of the pipeline:
 
 ```bash
-nextflow pull oist/selenoproteins
+nextflow pull oist/LuscombeU_Selenoproteins_Pipeline
 ```
 
 ### Reproducibility
 
 It is a good idea to specify the pipeline version when running the pipeline on your data. This ensures that a specific version of the pipeline code and software are used when you run your pipeline. If you keep using the same tag, you'll be running the same version of the pipeline, even if there have been changes to the code since.
 
-First, go to the [oist/selenoproteins releases page](https://github.com/oist/selenoproteins/releases) and find the latest pipeline version - numeric only (eg. `1.3.1`). Then specify this when running the pipeline with `-r` (one hyphen) - eg. `-r 1.3.1`. Of course, you can switch to another version by changing the number after the `-r` flag.
+First, go to the [oist/LuscombeU_Selenoproteins_Pipeline releases page](https://github.com/oist/LuscombeU_Selenoproteins_Pipeline/releases) and find the latest pipeline version - numeric only (eg. `1.3.1`). Then specify this when running the pipeline with `-r` (one hyphen) - eg. `-r 1.3.1`. Of course, you can switch to another version by changing the number after the `-r` flag.
 
 This version number will be logged in reports when you run the pipeline, so that you'll know what you used when you look back in the future. For example, at the bottom of the MultiQC reports.
 

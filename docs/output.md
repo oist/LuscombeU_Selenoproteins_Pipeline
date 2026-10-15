@@ -1,4 +1,4 @@
-# oist/selenoproteins: Output
+# oist/LuscombeU_Selenoproteins_Pipeline: Output
 
 ## Introduction
 
@@ -6,17 +6,55 @@ This document describes the output produced by the pipeline. Most of the plots a
 
 The directories listed below will be created in the results directory after the pipeline has finished. All paths are relative to the top-level results directory.
 
-<!-- TODO nf-core: Write this documentation describing your workflow's output -->
-
 ## Pipeline overview
 
-The pipeline is built using [Nextflow](https://www.nextflow.io/) and processes data using the following steps:
+- [Assembly statistics](#assembly-statistics): seqkit stats.
+- [Selenoprotein genes](#selenoprotein-genes): Selenoprofiles predictions, miniprot cross-check, SECIS evidence and annotation assessment.
+- [tRNA-Sec](#trna-sec): Secmarker, cmsearch and tRNAscan-SE predictions merged into loci.
+- [Summary](#summary): tables used by the MultiQC report.
+- [MultiQC](#multiqc) and [pipeline information](#pipeline-information).
 
+### Assembly statistics
 
-- [MultiQC](#multiqc) - Aggregate report describing results and QC from the whole pipeline
-- [Pipeline information](#pipeline-information) - Report metrics generated during the workflow execution
+- `seqkit/`: `<sample>.tsv`, sequence statistics of each genome (`seqkit stats --all`).
 
+### Selenoprotein genes
 
+- `selenoprofiles/`
+  - `<sample>.selenoprofiles.gtf`: predictions; the Sec codons are features of type `Selenocysteine`. The last field of `gene_id` is the Selenoprofiles label (`selenocysteine`, `cysteine`, `pseudo` and others).
+  - `<sample>.selenoprofiles.faa`, `<sample>.selenoprofiles.cds.fa`: predicted proteins and coding sequences.
+  - `<sample>.three_prime.fa`: 6000 nt downstream of each prediction.
+  - `<sample>_alignments/`: alignment of the predictions of each family with its profile.
+  - `<sample>_results.tar.gz`: complete Selenoprofiles result folder.
+  - `<sample>.transcripts.tsv`, `<sample>.genes.tsv`: annotation status from `selenoprofiles assess`, when an annotation is given.
+- `miniprot/`: `<sample>.gff`, alignments of the Sec-containing profile sequences (`summary/selenoprotein_queries.faa`).
+- `sec/`: `<sample>.miniprot_sec.tsv`, TGA codons aligned to a query selenocysteine (`aligned`) or found right after an alignment that stops before it (`next_codon`).
+- `infernal/`: `<sample>.secis.tbl.gz`, cmsearch hits of the SECIS model in the 3' flanks.
+- `compare/`
+  - `<sample>.sec_sites.tsv`: union of Selenoprofiles and miniprot Sec sites, with the support of each and the best SECIS score of the prediction.
+  - `<sample>.genes_summary.tsv`: counts per label, Sec site agreement (Jaccard index) and number of selenoproteins with a SECIS hit.
+
+### Sec codon layer and expectation
+
+- `compare/<sample>.sec_codons.gff3`: Sec codons as GFF3 features for annotation pipelines.
+- `expectation/`, with `--expectation`: `<sample>.expectation.tsv`, expected and observed Sec sites per family; `<sample>.expectation_summary.tsv`, missing and extra families.
+
+### Annotation checks
+
+- `annotation/`: `<sample>.sec_annotation.tsv`, for each predicted Sec codon, the class in the given annotation (Ticó et al. 2026), the residue it gets, the transcript and protein concerned, and a note when the codon lies in another transcript's UTR; `<sample>.sec_annotation_transcripts.tsv`, the class for every overlapping transcript; `<sample>.sec_annotation_summary.tsv`, counts at gene and transcript level.
+- `readthrough/`, with `--readthrough_screen`: `<sample>.readthrough.tsv`, TGA events per transcript (`start_extension`, `upstream_tga`, `stop_readthrough`, `internal_tga`, `sec_declared`); `<sample>.3utr.fa`, the 3′ UTRs searched for SECIS elements; `<sample>.candidates.tsv`, ranked candidates with the SECIS bit score, E-value and position.
+- `infernal/`: `<sample>.screen.tbl.gz`, SECIS hits in the 3′ UTRs.
+
+### tRNA-Sec
+
+- `secmarker/`: `<sample>.trnasec.gff`, `.fa`, `.ss`.
+- `infernal/`: `<sample>.trnasec.tbl.gz`, cmsearch hits of the tRNA-Sec model.
+- `trnascanse/`: tRNAscan-SE output, when `--trnasec_tools` includes `trnascanse`.
+- `compare/`: `<sample>.trnasec_loci.tsv`, merged loci with the score of each tool, and `<sample>.trnasec_summary.tsv`.
+
+### Summary
+
+- `summary/`: MultiQC custom-content tables (`*_mqc.tsv`) and the Sec trait call per genome (`sec_trait_mqc.tsv`).
 
 ### MultiQC
 

@@ -8,3 +8,7 @@ multiqc/multiqc_data/llms-full.txt
 multiqc/multiqc_plots/{svg,pdf,png}/*.{svg,pdf,png}
 multiqc/multiqc_report.html
 pipeline_info/*.{html,json,txt,yml}
+infernal/*.{tbl,txt}.gz
+selenoprofiles/*.selenoprofiles.{faa,cds.fa}
+selenoprofiles/*_alignments/*.ali
+selenoprofiles/*_results.tar.gz

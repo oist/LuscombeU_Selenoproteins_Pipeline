@@ -3,15 +3,15 @@ title: Contributing
 markdownPlugin: checklist
 ---
 
-# `oist/selenoproteins`: Contributing guidelines
+# `oist/LuscombeU_Selenoproteins_Pipeline`: Contributing guidelines
 
 Hi there!
-Thanks for taking an interest in improving oist/selenoproteins.
+Thanks for taking an interest in improving oist/LuscombeU_Selenoproteins_Pipeline.
 
-This page describes the recommended nf-core way to contribute to both oist/selenoproteins and nf-core pipelines in general, including:
+This page describes the recommended nf-core way to contribute to both oist/LuscombeU_Selenoproteins_Pipeline and nf-core pipelines in general, including:
 
 - [General contribution guidelines](#general-contribution-guidelines): common procedures or guides across all nf-core pipelines.
-- [Pipeline-specific contribution guidelines](#pipeline-specific-contribution-guidelines): procedures or guides specific to the development conventions of oist/selenoproteins.
+- [Pipeline-specific contribution guidelines](#pipeline-specific-contribution-guidelines): procedures or guides specific to the development conventions of oist/LuscombeU_Selenoproteins_Pipeline.
 
 ## General contribution guidelines
 
@@ -20,8 +20,8 @@ This page describes the recommended nf-core way to contribute to both oist/selen
 To contribute code to any nf-core pipeline:
 
 - [ ] Ensure you have Nextflow, nf-core tools, and nf-test installed. See the [nf-core/tools repository](https://github.com/nf-core/tools) for instructions.
-- [ ] Check whether a GitHub [issue](https://github.com/oist/selenoproteins/issues) about your idea already exists. If an issue does not exist, create one so that others are aware you are working on it.
-- [ ] [Fork](https://help.github.com/en/github/getting-started-with-github/fork-a-repo) the [oist/selenoproteins repository](https://github.com/oist/selenoproteins) to your GitHub account.
+- [ ] Check whether a GitHub [issue](https://github.com/oist/LuscombeU_Selenoproteins_Pipeline/issues) about your idea already exists. If an issue does not exist, create one so that others are aware you are working on it.
+- [ ] [Fork](https://help.github.com/en/github/getting-started-with-github/fork-a-repo) the [oist/LuscombeU_Selenoproteins_Pipeline repository](https://github.com/oist/LuscombeU_Selenoproteins_Pipeline) to your GitHub account.
 - [ ] Create a branch on your forked repository and make your changes following [pipeline conventions](#pipeline-contribution-conventions) (if applicable).
 - [ ] To fix major bugs, name your branch `patch` and follow the [patch release](#patch-release) process.
 - [ ] Update relevant documentation within the `docs/` folder, use nf-core/tools to update `nextflow_schema.json`, and update `CITATIONS.md`.
@@ -31,17 +31,15 @@ To contribute code to any nf-core pipeline:
 
 If you are not used to this workflow with Git, see the [GitHub documentation](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests) or [Git resources](https://try.github.io/) for more information.
 
-
-
 ### GitHub Codespaces
 
-You can contribute to oist/selenoproteins without installing a local development environment on your machine by using [GitHub Codespaces](https://github.com/codespaces).
+You can contribute to oist/LuscombeU_Selenoproteins_Pipeline without installing a local development environment on your machine by using [GitHub Codespaces](https://github.com/codespaces).
 
 [GitHub Codespaces](https://github.com/codespaces) is an online developer environment that runs in your browser, complete with VS Code and a terminal.
 Most nf-core repositories include a devcontainer configuration, which creates a GitHub Codespaces environment specifically for Nextflow development.
 The environment includes pre-installed nf-core tools, Nextflow, and a few other helpful utilities via a Docker container.
 
-To get started, open the repository in [Codespaces](https://github.com/oist/selenoproteins/codespaces).
+To get started, open the repository in [Codespaces](https://github.com/oist/LuscombeU_Selenoproteins_Pipeline/codespaces).
 
 ### Testing
 
@@ -94,7 +92,7 @@ These tests are run with the latest available version of Nextflow and the minimu
 
 ### Pipeline contribution conventions
 
-nf-core semi-standardises how you write code and other contributions to make the oist/selenoproteins code and processing logic more understandable for new contributors and to ensure quality.
+nf-core semi-standardises how you write code and other contributions to make the oist/LuscombeU_Selenoproteins_Pipeline code and processing logic more understandable for new contributors and to ensure quality.
 
 #### Add a new pipeline step
 

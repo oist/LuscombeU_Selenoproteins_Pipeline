@@ -4,7 +4,6 @@ nf_core_version: 4.1.0
 
 lint:
   files_unchanged:
-    - .prettierignore
     - CODE_OF_CONDUCT.md
     - assets/nf-core-selenoproteins_logo_light.png
     - docs/images/nf-core-selenoproteins_logo_light.png
@@ -13,6 +12,7 @@ lint:
     - .github/PULL_REQUEST_TEMPLATE.md
     - assets/email_template.txt
     - docs/README.md
+    - .prettierignore
   nextflow_config:
     - manifest.name
     - manifest.homePage
@@ -35,9 +35,9 @@ template:
   description: Annotation of selenoprotein genes, Sec machinery and tRNA-Sec in genome
     assemblies
   author: Charles Plessy
-  version: 0.1.0dev
+  version: 1.0.0dev
   force: true
-  outdir: /tmp/tpl/out
+  outdir: .
   skip_features:
     - igenomes
     - fastqc

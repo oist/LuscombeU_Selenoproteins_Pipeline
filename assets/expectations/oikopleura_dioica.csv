@@ -1,0 +1,11 @@
+# Expected selenoprotein genes per haploid genome of Oikopleura dioica (OKI2018_I68, OSKA2016 and OdB3, public
+# assemblies). Columns follow selenoprotein_profiles Expectation_table.csv (v1.4.x); subfamily columns use the
+# calls of `selenoprofiles orthology` with its vertebrate anchors, which are tentative for a tunicate:
+# GPX4 x4 (tree agrees, support 1.0), DIO1 x2 (tree places them with DIO2/DIO3), TXNRD3 x1 (tree: near Drosophila
+# TrxR and TXNRD2), SELENOW1 x4 and SELENOW2 x1 (tree agrees except the PAR copy, unresolved).
+# TXNRD, SELENOT and SELENOK lie on the X-specific region: one copy in male (XY) assemblies.
+# SELENOK (XSR, unannotated in RefSeq, C-terminal ...GGG-U-GR) was found with public transcripts (OKI2018, Bliznina et al. 2021; OSKA2016, GSE64421).
+# Not encoded by the table: PSTK is present but divergent (XSR, RefSeq LOC145708732 truncated); SELENOT, SEPHS2, SELENOS and SELENOK are missed by Selenoprofiles 4.5.8;
+# thioredoxin-like protein 1 (chr2, ...KKVG-U-G*) is a candidate, not counted.
+Lineage,GPX1,GPX2,GPX3,GPX4,GPX6,DIO1,DIO2,DIO3,TXNRD1,TXNRD2,TXNRD3,SEPHS2,SELENOE,SELENOF,SELENOH,SELENOI,SELENOJ,SELENOK,SELENOL,SELENOM,SELENON,SELENOO,SELENOP,MSRB,SELENOS,SELENOT,SELENOU,SELENOV,SELENOW1,SELENOW2
+Oikopleura,0,0,0,4,0,2,0,0,0,0,1,1,0,1,0,0,0,1,0,0,0,1,0,0,1,1,0,0,4,1

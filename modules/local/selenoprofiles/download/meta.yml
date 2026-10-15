@@ -1,0 +1,49 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
+name: "selenoprofiles_download"
+description: Download the Selenoprofiles profiles, gene ontology data and tag database
+keywords:
+  - selenoprotein
+  - database
+  - download
+tools:
+  - "selenoprofiles":
+      description: "Profile-based gene finding pipeline specialised in selenoproteins and selenocysteine machinery"
+      homepage: "https://github.com/mariottigenomicslab/selenoprofiles4"
+      documentation: "https://selenoprofiles4.readthedocs.io"
+      tool_dev_url: "https://github.com/mariottigenomicslab/selenoprofiles4"
+      doi: "10.1093/bioinformatics/btq516"
+      licence: ["MIT"]
+      identifier: ""
+input: []
+output:
+  db:
+    - "selenoprofiles_data":
+        type: directory
+        description: Selenoprofiles data directory
+        pattern: "selenoprofiles_data"
+        ontologies: []
+  versions_selenoprofiles:
+    - - ${task.process}:
+          type: string
+          description: The name of the process
+      - selenoprofiles:
+          type: string
+          description: The name of the tool
+      - "python -c 'from selenoprofiles4._version import __version__; print(__version__)'":
+          type: eval
+          description: The expression to obtain the version of the tool
+topics:
+  versions:
+    - - ${task.process}:
+          type: string
+          description: The name of the process
+      - selenoprofiles:
+          type: string
+          description: The name of the tool
+      - "python -c 'from selenoprofiles4._version import __version__; print(__version__)'":
+          type: eval
+          description: The expression to obtain the version of the tool
+authors:
+  - "@charles-plessy"
+maintainers:
+  - "@charles-plessy"

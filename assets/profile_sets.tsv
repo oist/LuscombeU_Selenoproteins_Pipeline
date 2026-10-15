@@ -1,0 +1,8 @@
+set	members
+prokarya	ahpd,ahpf,ars_s,arsc,bbd,cytc,dsre,duf1858,fesor,fmdb,frha,ftrb,gpx_b,grx,gst,hesb_like,imp,merp,mert,msra_b,mucd,nadh_ox,pp_sp1,prx,prx_like,rhor,rnfb,rnfc,rsam,seld,soret,tdip,ugc,ugsc,uos_hp3,usha,yeee,di_b,dsba,dsbg,fdha,frhd,frx,grda,grdb,hdra,prdb
+metazoa	SEPHS2,DIO,SELENOE,FrnE,GPX,MsrA,SELENOF,SelKi,SELENOH,SELENOI,SELENOJ,SELENOK,SELENOL,SELENOM,SELENON,SELENOO,SELENOP,MSRB,SELENOS,SELENOU,TXNRD,SELENOT,SELENOW,AhpC
+protist	EhSEP2,Lmsel1,Sel1,Sel2,Sel3,Sel4,SelQ,SelTryp,MSP,Ostsp1,Ostsp2,Ostsp3
+machinery	SEPHS2,SBP2,SecS,eEFsec,pstk,secp43
+eukarya	metazoa,protist
+se_traits	machinery,ybbb,yqeb,yqec
+all	machinery,metazoa,protist,prokarya
