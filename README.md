@@ -45,16 +45,15 @@ ecoli,ecoli_k12.fna,bacteria,,
 
 ```bash
 nextflow run oist/LuscombeU_Selenoproteins_Pipeline -r main \
-   -profile <conda/mamba, or wave,singularity / wave,docker> \
+   -profile <docker/singularity/conda/.../institute> \
    --input samplesheet.csv \
    --outdir <OUTDIR>
 ```
 
-Selenoprofiles 4.5.8 and Secmarker 1.0.0 have no Biocontainers image yet (Bioconda recipes pending). Use
-`-profile conda` or `mamba`, or add `wave` to a container profile so that Wave builds images from the module
-conda environments. With a container profile alone, these two tools must be installed on the host.
+Selenoprofiles 4.5.8 and Secmarker 1.0.0 have no Bioconda package yet; their modules use images built by
+Seqera Containers from the module conda environments (`modules/local/*/environment.yml`).
 
-Test the installation with `-profile test,conda` (the test downloads small genomes from nf-core/test-datasets).
+Test the installation with `-profile test,<docker/singularity/institute>` (the test downloads small genomes from nf-core/test-datasets).
 
 Without `--selenoprofiles_data`, the pipeline downloads the Selenoprofiles data from the authors' server. See [usage](docs/usage.md) and [output](docs/output.md) for details.
 

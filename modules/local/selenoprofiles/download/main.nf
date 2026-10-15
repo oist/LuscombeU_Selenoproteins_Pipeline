@@ -2,7 +2,9 @@ process SELENOPROFILES_DOWNLOAD {
     label 'process_single'
 
     conda "${moduleDir}/environment.yml"
-    // No Biocontainers image yet: use -profile conda/mamba, or -profile wave,<engine> to build one from environment.yml
+    container "${ workflow.containerEngine in ['singularity', 'apptainer'] && !task.ext.singularity_pull_docker_container
+        ? 'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/58/58fad6038205d880917370e4e521d0d0b2e07c6bbb06d858facbf8892321fd8e/data'
+        : 'community.wave.seqera.io/library/blast-legacy_exonerate_mafft_obonet_pruned:6c6cfa335a4446c7' }"
 
     output:
     path "selenoprofiles_data", emit: db
