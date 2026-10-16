@@ -8,7 +8,8 @@ Selenoprofiles GTF files (<sample>.selenoprofiles.gtf). Values:
   found      predicted (label homologue, or another residue at the selenocysteine position)
   partial    predicted only as pseudo (in-frame stop or frameshift) or unaligned at the selenocysteine position
   -          no prediction
-Absences depend on assembly completeness: a gene broken across contigs may be missed.
+Absences depend on assembly completeness: a gene broken across contigs may be missed. Presences mean homology to the
+profile, not orthology: a related paralog (for example KTI12 for PSTK) can be predicted by a profile.
 """
 import argparse, collections, csv, os, re
 
@@ -50,7 +51,8 @@ def main():
         o.write("# id: 'machinery'\n# section_name: 'Selenocysteine machinery'\n"
                 "# description: 'tRNA-Sec loci supported by two or more tools, and the Selenoprofiles predictions of "
                 "the machinery genes: Sec, SEPHS2 with a selenocysteine codon; found; partial, only pseudo or "
-                "unaligned predictions; -, none. A gene broken by the assembly may be missed.'\n# plot_type: 'table'\n")
+                "unaligned predictions; -, none. Found means homologous to the profile: orthology to the named gene, as "
+                "opposed to a related paralog, is not tested. A gene broken by the assembly may be missed.'\n# plot_type: 'table'\n")
         o.write("Sample\ttRNA-Sec\t" + "\t".join(g for g, _ in GENES) + "\n")
         for s in samples:
             c = labels(gtfs[s]) if s in gtfs else {}

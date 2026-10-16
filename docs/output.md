@@ -34,6 +34,14 @@ The directories listed below will be created in the results directory after the 
   - `<sample>.sec_sites.tsv`: union of Selenoprofiles and miniprot Sec sites, with the support of each and the best SECIS score of the prediction.
   - `<sample>.genes_summary.tsv`: counts per label, Sec site agreement (Jaccard index) and number of selenoproteins with a SECIS hit.
 
+Selenoprofiles assigns each prediction to the family of the profile that found it, by sequence similarity to the
+profile and, for some families, to tagged proteins of a reference database. It does not test orthology: a prediction
+may be a paralog of the named gene, or a member of a related family. This matters most for genes with close
+relatives, such as PSTK (related to the kinase KTI12), eEFSec (related to other translation elongation factors) or
+SECp43 (related to other RNA-binding proteins), and for lineage-specific profiles given with
+`--selenoprofiles_overrides`. Orthology must be established outside the pipeline, for example by phylogeny with the
+related families.
+
 ### Sec codon layer and expectation
 
 - `compare/<sample>.sec_codons.gff3`: Sec codons as GFF3 features for annotation pipelines.
@@ -60,6 +68,9 @@ The directories listed below will be created in the results directory after the 
 ### Summary
 
 - `summary/`: MultiQC custom-content tables (`*_mqc.tsv`) and the Sec trait call per genome (`sec_trait_mqc.tsv`).
+  - `machinery_mqc.tsv`: per genome, the tRNA-Sec loci supported by two or more tools and the Selenoprofiles status of
+    the machinery genes (SEPHS2, PSTK, SecS, eEFSec, SBP2, SECp43). A gene found here is a homolog of the profile, not
+    a proven ortholog (see above); a gene broken by the assembly may be missed.
 
 ### MultiQC
 

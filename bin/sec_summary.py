@@ -69,7 +69,8 @@ def main():
 
     gene_headers = ["predictions", "selenocysteine", "cysteine", "pseudo", "other_labels", "sec_families"]
     write_table("selenoprotein_genes_mqc.tsv", "selenoprotein_genes", "Selenoprotein genes",
-                "Selenoprofiles predictions per label, and number of families with at least one selenocysteine-labelled prediction.",
+                "Selenoprofiles predictions per label, and number of families with at least one selenocysteine-labelled prediction. "
+                "Predictions are homologs of the profile families; orthology is not tested.",
                 gene_headers, [(s, genes[s]) for s in samples if s in genes])
 
     agreement_headers = ["sec_sites_selenoprofiles", "sec_sites_miniprot", "sec_sites_both", "sec_sites_jaccard", "secis_supported"]
