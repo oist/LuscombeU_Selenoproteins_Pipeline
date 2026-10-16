@@ -11,6 +11,7 @@ Absence calls depend on assembly completeness.
 
 import argparse
 import csv
+import statistics
 from collections import Counter
 from pathlib import Path
 
@@ -54,6 +55,7 @@ def main():
     parser.add_argument("--sec-annotation", nargs="*", default=[], help="sec_annotation_check.py summaries")
     parser.add_argument("--candidates", nargs="*", default=[], help="rank_readthrough.py tables named <sample>.candidates.tsv")
     parser.add_argument("--expectation", nargs="*", default=[], help="expectation_check.py summaries")
+    parser.add_argument("--transcripts", nargs="*", default=[], help="sec_transcript_support.py tables named <sample>.sec_transcripts.tsv")
     args = parser.parse_args()
 
     samples = [line.strip() for line in open(args.samples) if line.strip()]
@@ -109,6 +111,21 @@ def main():
         write_table("expectation_mqc.tsv", "expectation", "Expected selenoproteome",
                     "Sec sites per family compared with the expectation for the lineage; missing families may be known blind spots of the predictors.",
                     ["expected", "observed", "missing", "extra"], [(s, expect[s]) for s in samples if s in expect])
+
+    if args.transcripts:
+        tx = {}
+        for path in args.transcripts:
+            sample = Path(path).name[: -len(".sec_transcripts.tsv")]
+            with open(path) as handle:
+                rows = list(csv.DictReader(handle, delimiter="\t"))
+            supported = [r for r in rows if int(r["transcripts"]) > 0]
+            tx[sample] = {"sec_sites": len(rows), "with_transcripts": len(supported),
+                          "transcripts_total": sum(int(r["transcripts"]) for r in rows),
+                          "median_3prime_extent": statistics.median(int(r["max_3prime_extent"]) for r in supported) if supported else "NA"}
+        write_table("transcript_support_mqc.tsv", "transcript_support", "Transcript support",
+                    "Sec codons covered by the given transcripts: number of Sec codons, codons inside an aligned exon of at least one transcript, "
+                    "supporting alignments in total, and the median extension of the longest supporting transcript 3' of the codon (nt).",
+                    ["sec_sites", "with_transcripts", "transcripts_total", "median_3prime_extent"], [(s, tx[s]) for s in samples if s in tx])
 
     with open("sec_trait_mqc.tsv", "w") as out:
         out.write("# id: 'sec_trait'\n# plot_type: 'generalstats'\n# pconfig:\n#     sec_trait:\n#         title: 'Sec trait'\n#         description: 'Sec trait call from selenoprotein genes and tRNA-Sec'\n")

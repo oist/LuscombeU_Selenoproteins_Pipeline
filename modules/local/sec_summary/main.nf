@@ -15,6 +15,7 @@ process SEC_SUMMARY {
     path sec_annotation_tables, stageAs: 'secannot/*'
     path candidate_tables, stageAs: 'candidates/*'
     path expectation_tables, stageAs: 'expectation/*'
+    path transcript_tables, stageAs: 'transcripts/*'
 
     output:
     path "*_mqc.tsv", emit: multiqc
@@ -28,6 +29,7 @@ process SEC_SUMMARY {
     def secannot = sec_annotation_tables ? "--sec-annotation ${[sec_annotation_tables].flatten().join(' ')}" : ''
     def candidates = candidate_tables ? "--candidates ${[candidate_tables].flatten().join(' ')}" : ''
     def expectation = expectation_tables ? "--expectation ${[expectation_tables].flatten().join(' ')}" : ''
+    def transcripts = transcript_tables ? "--transcripts ${[transcript_tables].flatten().join(' ')}" : ''
     """
     sec_summary.py \\
         --samples ${samples} \\
@@ -36,7 +38,8 @@ process SEC_SUMMARY {
         ${assess} \\
         ${secannot} \\
         ${candidates} \\
-        ${expectation}
+        ${expectation} \\
+        ${transcripts}
     """
 
     stub:

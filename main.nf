@@ -31,6 +31,9 @@ workflow OIST_SELENOPROTEINS {
 
     main:
 
+    // With syntax parser v2, parameters given on the command line are strings ("false" would be true):
+    // the boolean options are converted here; nf-schema checks their values during validation.
+
     //
     // WORKFLOW: Run pipeline
     //
@@ -38,11 +41,11 @@ workflow OIST_SELENOPROTEINS {
         samplesheet,
         params.selenoprofiles_data,
         params.trnasec_tools,
-        params.skip_miniprot,
-        params.skip_secis,
+        params.skip_miniprot.toString().toBoolean(),
+        params.skip_secis.toString().toBoolean(),
         params.secis_cm,
         params.trnasec_cm,
-        params.readthrough_screen,
+        params.readthrough_screen.toString().toBoolean(),
         params.screen_cm,
         params.expectation,
         params.multiqc_config,

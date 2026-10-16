@@ -209,6 +209,7 @@ workflow SELENOPROTEINS {
         SEC_ANNOTATION_CHECK.out.summary.map { _meta, summary -> summary }.collect().ifEmpty([]),
         ch_candidates.map { _meta, table -> table }.collect().ifEmpty([]),
         ch_expectation.map { _meta, table -> table }.collect().ifEmpty([]),
+        SEC_TRANSCRIPT_SUPPORT.out.support.map { _meta, table -> table }.collect().ifEmpty([]),
     )
     ch_multiqc_files = ch_multiqc_files.mix(SEC_SUMMARY.out.multiqc.flatten())
 

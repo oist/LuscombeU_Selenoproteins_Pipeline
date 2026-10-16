@@ -71,7 +71,7 @@ workflow PIPELINE_INITIALISATION {
         before_text,
         after_text,
         command,
-        false,
+        null, // cast CLI parameters to their schema types during validation (default of nf-schema with syntax parser v2)
     )
 
     //
@@ -155,7 +155,7 @@ def toolCitationText() {
         "Tools used in the workflow included:",
         "SeqKit (Shen et al. 2016),",
         "Selenoprofiles (Mariotti and Guigó 2010) with BLAST (Altschul et al. 1997), Exonerate (Slater and Birney 2005), GeneWise (Birney et al. 2004) and MAFFT (Katoh and Standley 2013),",
-        params.skip_miniprot ? "" : "miniprot (Li 2023),",
+        params.skip_miniprot.toString().toBoolean() ? "" : "miniprot (Li 2023),",
         'secmarker' in tools ? "Secmarker (Santesmasses et al. 2017)," : "",
         'trnascanse' in tools ? "tRNAscan-SE (Chan et al. 2021)," : "",
         "Infernal (Nawrocki and Eddy 2013) with Rfam models (Kalvari et al. 2021)",
@@ -174,7 +174,7 @@ def toolBibliographyText() {
         "<li>Slater GS, Birney E (2005). Automated generation of heuristics for biological sequence comparison. BMC Bioinformatics 6:31. doi: 10.1186/1471-2105-6-31</li>",
         "<li>Birney E, Clamp M, Durbin R (2004). GeneWise and Genomewise. Genome Res 14(5):988-995. doi: 10.1101/gr.1865504</li>",
         "<li>Katoh K, Standley DM (2013). MAFFT multiple sequence alignment software version 7. Mol Biol Evol 30(4):772-780. doi: 10.1093/molbev/mst010</li>",
-        params.skip_miniprot ? "" : "<li>Li H (2023). Protein-to-genome alignment with miniprot. Bioinformatics 39(1):btad014. doi: 10.1093/bioinformatics/btad014</li>",
+        params.skip_miniprot.toString().toBoolean() ? "" : "<li>Li H (2023). Protein-to-genome alignment with miniprot. Bioinformatics 39(1):btad014. doi: 10.1093/bioinformatics/btad014</li>",
         'secmarker' in tools ? "<li>Santesmasses D, Mariotti M, Guigó R (2017). Computational identification of the selenocysteine tRNA (tRNASec) in genomes. PLoS Comput Biol 13(2):e1005383. doi: 10.1371/journal.pcbi.1005383</li>" : "",
         'trnascanse' in tools ? "<li>Chan PP, Lin BY, Mak AJ, Lowe TM (2021). tRNAscan-SE 2.0: improved detection and functional classification of transfer RNA genes. Nucleic Acids Res 49(16):9077-9096. doi: 10.1093/nar/gkab688</li>" : "",
         "<li>Nawrocki EP, Eddy SR (2013). Infernal 1.1: 100-fold faster RNA homology searches. Bioinformatics 29(22):2933-2935. doi: 10.1093/bioinformatics/btt509</li>",

@@ -47,6 +47,7 @@ The directories listed below will be created in the results directory after the 
 
 ### Transcript support
 
+- MultiQC section "Transcript support", per genome: Sec codons, Sec codons inside an aligned exon of at least one transcript, supporting alignments, median 3′ extension.
 - `transcripts/`, when the samplesheet gives transcripts: `<sample>.sec_transcripts.tsv`, for each Sec codon of `compare/<sample>.sec_sites.tsv`, the number of transcripts whose primary spliced alignment (minimap2 `-x splice`) contains the whole codon inside one aligned exon (`transcripts`), and the longest extension of these transcripts 3′ of the codon on the strand of the gene (`max_3prime_extent`, in nucleotides), which shows whether they reach the SECIS region.
 
 ### tRNA-Sec
