@@ -32,6 +32,8 @@ process SELENOPROFILES_ASSESS {
     ${annotation_gz ? "if [ -L ${gff} ]; then echo 'ERROR: ${gff} is a staged input; not overwritten' >&2; exit 1; fi; rm -f ${gff}; gunzip -c ${annotation} > ${gff}" : ''}
 
     # assess fails on an empty prediction set, which is a valid result
+    # -cg Parent: transcripts are identified by the Parent of their CDS features, present in every GFF3; the default
+    # (ID) fails on annotations whose CDS features have no ID, such as the ANISEED OSKA2016 annotation
     if grep -q -P '\\tSelenocysteine\\t' ${selenoprofiles_gtf}; then
         selenoprofiles assess \\
             -s ${selenoprofiles_gtf} \\
@@ -39,6 +41,7 @@ process SELENOPROFILES_ASSESS {
             -f ${target} \\
             -o ${prefix}.transcripts.tsv \\
             -agg ${prefix}.genes.tsv \\
+            -cg Parent \\
             ${args}
     else
         rm -f ${prefix}.transcripts.tsv ${prefix}.genes.tsv

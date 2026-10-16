@@ -1,0 +1,14 @@
+##gff-version 3
+# SELENOO on chr22 (hg38), modelled after the Selenoprofiles prediction; CDS features carry only Parent,
+# as in some public annotations (for example ANISEED), to test the annotation checks on that format.
+chr22	test	gene	50201037	50217669	.	+	.	ID=SELENOO_test
+chr22	test	mRNA	50201037	50217669	.	+	.	ID=SELENOO_test.t1;Parent=SELENOO_test
+chr22	test	CDS	50201037	50201590	.	+	.	Parent=SELENOO_test.t1
+chr22	test	CDS	50206317	50206520	.	+	.	Parent=SELENOO_test.t1
+chr22	test	CDS	50208536	50208716	.	+	.	Parent=SELENOO_test.t1
+chr22	test	CDS	50210181	50210311	.	+	.	Parent=SELENOO_test.t1
+chr22	test	CDS	50210631	50210911	.	+	.	Parent=SELENOO_test.t1
+chr22	test	CDS	50215717	50215867	.	+	.	Parent=SELENOO_test.t1
+chr22	test	CDS	50216691	50216876	.	+	.	Parent=SELENOO_test.t1
+chr22	test	CDS	50216972	50217128	.	+	.	Parent=SELENOO_test.t1
+chr22	test	CDS	50217205	50217369	.	+	.	Parent=SELENOO_test.t1

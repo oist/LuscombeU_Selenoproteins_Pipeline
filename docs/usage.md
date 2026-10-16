@@ -70,6 +70,12 @@ Missing families are not always absent genes: SELENOT, SEPHS2 and SELENOS are mi
 - The Sec trait call (`present`, `absent`, `inconsistent`) combines selenoprotein genes with supported tRNA-Sec loci: found by two or more tools and, when Secmarker reports the locus, with the G73 discriminator base of functional tRNA-Sec genes. An `absent` call can also result from an incomplete assembly; check the assembly statistics in the report.
 - SECIS hits are reported as evidence and do not filter predictions. Rfam has no archaeal SECIS model, and the pipeline does not search bacterial SECIS elements, which lie inside the coding sequence.
 
+## Testing before a real run
+
+`-profile test,<your container or institutional profile>` runs every process of the pipeline on small public
+genomes in a few minutes. Run it with the release and the profile you intend to use before analysing real data:
+it detects missing tools in container images and site-specific problems early.
+
 ## Running the pipeline
 
 The typical command for running the pipeline is as follows:
