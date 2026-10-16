@@ -21,6 +21,7 @@ include { TRNASCANSE } from '../modules/nf-core/trnascanse/main'
 include { COMPARE_GENES } from '../modules/local/compare_genes/main'
 include { COMPARE_TRNASEC } from '../modules/local/compare_trnasec/main'
 include { SEC_SUMMARY } from '../modules/local/sec_summary/main'
+include { MACHINERY_SUMMARY } from '../modules/local/machinery_summary/main'
 include { SEC_ANNOTATION_CHECK } from '../modules/local/sec_annotation_check/main'
 include { MINIMAP2_ALIGN as MINIMAP2_ALIGN_TRANSCRIPTS } from '../modules/nf-core/minimap2/align/main'
 include { SEC_TRANSCRIPT_SUPPORT } from '../modules/local/sec_transcript_support/main'
@@ -229,6 +230,13 @@ workflow SELENOPROTEINS {
         SEC_TRANSCRIPT_SUPPORT.out.support.map { _meta, table -> table }.collect().ifEmpty([]),
     )
     ch_multiqc_files = ch_multiqc_files.mix(SEC_SUMMARY.out.multiqc.flatten())
+
+    MACHINERY_SUMMARY(
+        ch_sample_order,
+        SELENOPROFILES_SELENOPROFILES.out.gtf.map { _meta, gtf -> gtf }.collect(),
+        COMPARE_TRNASEC.out.summary.map { _meta, summary -> summary }.collect(),
+    )
+    ch_multiqc_files = ch_multiqc_files.mix(MACHINERY_SUMMARY.out.multiqc)
 
     //
     // Collate and save software versions

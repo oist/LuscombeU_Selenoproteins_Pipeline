@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### `Added`
 
+- MultiQC section "Selenocysteine machinery" (new module `MACHINERY_SUMMARY`): per genome, the supported tRNA-Sec loci and the Selenoprofiles status of SEPHS2, PSTK, SecS, eEFSec, SBP2 and SECp43.
+
 - `--selenoprofiles_overrides`: a directory or `.tar.gz` archive of Selenoprofiles profiles that replace the standard profiles of the same name (new module `SELENOPROFILES_OVERRIDE`), for lineage-specific profiles.
 
 ### `Changed`
