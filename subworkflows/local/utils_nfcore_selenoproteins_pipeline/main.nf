@@ -87,8 +87,8 @@ workflow PIPELINE_INITIALISATION {
 
     def default_profiles = [eukaryota: 'eukarya,machinery', bacteria: 'prokarya', archaea: 'prokarya']
     channel.fromList(samplesheetToList(input, "${projectDir}/assets/schema_input.json"))
-        .map { meta, fasta, annotation ->
-            [meta + [profiles: meta.profiles ?: default_profiles[meta.domain]], fasta, annotation ?: []]
+        .map { meta, fasta, annotation, transcripts ->
+            [meta + [profiles: meta.profiles ?: default_profiles[meta.domain]], fasta, annotation ?: [], transcripts ?: []]
         }
         .set { ch_samplesheet }
 

@@ -45,6 +45,10 @@ The directories listed below will be created in the results directory after the 
 - `readthrough/`, with `--readthrough_screen`: `<sample>.readthrough.tsv`, TGA events per transcript (`start_extension`, `upstream_tga`, `stop_readthrough`, `internal_tga`, `sec_declared`); `<sample>.3utr.fa`, the 3′ UTRs searched for SECIS elements; `<sample>.candidates.tsv`, ranked candidates with the SECIS bit score, E-value and position.
 - `infernal/`: `<sample>.screen.tbl.gz`, SECIS hits in the 3′ UTRs.
 
+### Transcript support
+
+- `transcripts/`, when the samplesheet gives transcripts: `<sample>.sec_transcripts.tsv`, for each Sec codon of `compare/<sample>.sec_sites.tsv`, the number of transcripts whose primary spliced alignment (minimap2 `-x splice`) contains the whole codon inside one aligned exon (`transcripts`), and the longest extension of these transcripts 3′ of the codon on the strand of the gene (`max_3prime_extent`, in nucleotides), which shows whether they reach the SECIS region.
+
 ### tRNA-Sec
 
 - `secmarker/`: `<sample>.trnasec.gff`, `.fa`, `.ss`.

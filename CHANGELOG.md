@@ -9,6 +9,8 @@ Initial release of oist/LuscombeU_Selenoproteins_Pipeline, created with the [nf-
 
 ### `Added`
 
+- Optional `transcripts` samplesheet column: spliced alignment of transcripts or ESTs (nf-core `minimap2/align`) and transcript support of each Sec codon (`transcripts/<sample>.sec_transcripts.tsv`).
+
 ### `Fixed`
 
 ### `Dependencies`

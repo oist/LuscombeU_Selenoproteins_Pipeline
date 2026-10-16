@@ -20,6 +20,8 @@ include { COMPARE_GENES } from '../modules/local/compare_genes/main'
 include { COMPARE_TRNASEC } from '../modules/local/compare_trnasec/main'
 include { SEC_SUMMARY } from '../modules/local/sec_summary/main'
 include { SEC_ANNOTATION_CHECK } from '../modules/local/sec_annotation_check/main'
+include { MINIMAP2_ALIGN as MINIMAP2_ALIGN_TRANSCRIPTS } from '../modules/nf-core/minimap2/align/main'
+include { SEC_TRANSCRIPT_SUPPORT } from '../modules/local/sec_transcript_support/main'
 include { READTHROUGH_SCREEN } from '../modules/local/readthrough_screen/main'
 include { RANK_READTHROUGH } from '../modules/local/rank_readthrough/main'
 include { EXPECTATION_CHECK } from '../modules/local/expectation_check/main'
@@ -38,7 +40,7 @@ include { methodsDescriptionText } from '../subworkflows/local/utils_nfcore_sele
 
 workflow SELENOPROTEINS {
     take:
-    ch_samplesheet // channel: [ val(meta), path(fasta), path(annotation) or [] ]
+    ch_samplesheet // channel: [ val(meta), path(fasta), path(annotation) or [], path(transcripts) or [] ]
     selenoprofiles_data
     trnasec_tools
     skip_miniprot
@@ -59,7 +61,7 @@ workflow SELENOPROTEINS {
     def ch_multiqc_files = channel.empty()
     def tools = trnasec_tools.tokenize(',')*.trim()
 
-    def ch_genomes = ch_samplesheet.map { meta, fasta, _annotation -> [meta, fasta] }
+    def ch_genomes = ch_samplesheet.map { meta, fasta, _annotation, _transcripts -> [meta, fasta] }
 
     SEQKIT_STATS(ch_genomes)
     ch_multiqc_files = ch_multiqc_files.mix(SEQKIT_STATS.out.stats.map { _meta, stats -> stats })
@@ -123,10 +125,22 @@ workflow SELENOPROTEINS {
         file("${projectDir}/assets/profile_sets.tsv", checkIfExists: true),
     )
 
+    //
+    // Transcript support: spliced alignment of the samplesheet transcripts, Sec codons inside aligned exons
+    //
+    def ch_transcripts = ch_samplesheet
+        .filter { _meta, _fasta, _annotation, transcripts -> transcripts }
+        .multiMap { meta, fasta, _annotation, transcripts ->
+            reads: [meta, transcripts]
+            reference: [meta, fasta]
+        }
+    MINIMAP2_ALIGN_TRANSCRIPTS(ch_transcripts.reads, ch_transcripts.reference, false, '', true, false)
+    SEC_TRANSCRIPT_SUPPORT(COMPARE_GENES.out.sites.join(MINIMAP2_ALIGN_TRANSCRIPTS.out.paf, failOnDuplicate: true))
+
     def ch_annotated = SELENOPROFILES_SELENOPROFILES.out.gtf
         .join(ch_samplesheet, failOnMismatch: true, failOnDuplicate: true)
-        .filter { _meta, _gtf, _fasta, annotation -> annotation }
-        .map { meta, gtf, fasta, annotation -> [meta, gtf, annotation, fasta] }
+        .filter { _meta, _gtf, _fasta, annotation, _transcripts -> annotation }
+        .map { meta, gtf, fasta, annotation, _transcripts -> [meta, gtf, annotation, fasta] }
     SELENOPROFILES_ASSESS(ch_annotated)
     SEC_ANNOTATION_CHECK(ch_annotated.map { meta, gtf, annotation, _fasta -> [meta, gtf, annotation] })
 
@@ -176,7 +190,7 @@ workflow SELENOPROTEINS {
     // Summary tables for MultiQC, in samplesheet order
     //
     def ch_sample_order = ch_samplesheet
-        .map { meta, _fasta, _annotation -> meta.id }
+        .map { meta, _fasta, _annotation, _transcripts -> meta.id }
         .collectFile(name: 'samples.txt', newLine: true, sort: false)
     //
     // Expected selenoproteome (families), for lineages with an expectation table

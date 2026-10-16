@@ -19,11 +19,12 @@ The samplesheet is a comma-separated file with a header row and one genome per r
 | `domain`     | yes      | `eukaryota`, `bacteria` or `archaea`. Selects the default profiles, disables intron prediction for prokaryotes, restricts the SECIS search to eukaryotes and sets the tRNAscan-SE model.                                                                  |
 | `profiles`   | no       | Comma-separated Selenoprofiles profiles or profile sets. Defaults: `eukarya,machinery` for eukaryotes, `prokarya` for bacteria and archaea. The sets are listed in `assets/profile_sets.tsv`.                                                             |
 | `annotation` | no       | Reference annotation of the genome in GFF3 format, optionally gzip-compressed. When given, `selenoprofiles assess` reports how it represents each predicted selenoprotein. The CDS `ID` attribute must identify the transcript, as in Ensembl GFF3 files. |
+| `transcripts` | no | Transcripts or ESTs of the same organism in FASTA format, optionally gzip-compressed. When given, they are aligned to the genome with minimap2 (`-x splice`) and each Sec codon gets the number of transcripts whose aligned exons contain it, and how far the longest of them extends 3′ of the codon. |
 
 ```csv title="samplesheet.csv"
-sample,fasta,domain,profiles,annotation
-human,GRCh38.fa.gz,eukaryota,,GRCh38.gff3.gz
-ecoli,ecoli_k12.fna,bacteria,,
+sample,fasta,domain,profiles,annotation,transcripts
+human,GRCh38.fa.gz,eukaryota,,GRCh38.gff3.gz,human_mrna.fa.gz
+ecoli,ecoli_k12.fna,bacteria,,,
 ```
 
 An [example samplesheet](../assets/test/samplesheet_test.csv) is used by the test profile.
