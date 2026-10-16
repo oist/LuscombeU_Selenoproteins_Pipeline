@@ -3,6 +3,16 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v0.1.2 - [2026-10-16]
+
+### `Fixed`
+
+- `SELENOPROFILES_ASSESS`: transcripts are identified by the `Parent` of their CDS features (`-cg Parent`). The default (`ID`) failed on annotations whose CDS features have no `ID`, such as the ANISEED OSKA2016 annotation; on RefSeq annotations both give the same classes.
+
+### `Changed`
+
+- Test profile: the `hs_chr22` sample now has an annotation (SELENOO, with CDS features carrying only `Parent`) and a transcript covering its Sec codon (`assets/test/`), so that `-profile test` runs every process, including `SELENOPROFILES_ASSESS`, `SEC_ANNOTATION_CHECK` and a non-zero transcript support.
+
 ## v0.1.1 - [2026-10-16]
 
 ### `Fixed`

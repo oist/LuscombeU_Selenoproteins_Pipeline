@@ -1,4 +1,4 @@
 sample,fasta,domain,profiles,annotation,transcripts
-hs_chr22,https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/genomics/homo_sapiens/genome/chr22/sequence/hg38.chr22.fasta,eukaryota,SELENOO,,https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/genomics/homo_sapiens/genome/transcriptome.fasta
+hs_chr22,https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/genomics/homo_sapiens/genome/chr22/sequence/hg38.chr22.fasta,eukaryota,SELENOO,https://raw.githubusercontent.com/oist/LuscombeU_Selenoproteins_Pipeline/0.1.2/assets/test/hs_chr22_SELENOO.gff3,https://raw.githubusercontent.com/oist/LuscombeU_Selenoproteins_Pipeline/0.1.2/assets/test/hs_chr22_transcripts.fa
 sc_genome,https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/genomics/eukaryotes/saccharomyces_cerevisiae/genome/genome.fa,eukaryota,SELENOO,,
 ec_fragment,https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/genomics/prokaryotes/escherichia_coli/genome/genome.fa,bacteria,fdha,,
