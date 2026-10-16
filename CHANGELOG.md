@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### `Added`
 
+### `Changed`
+
+- Resource labels set from the execution trace of nine appendicularian genomes (56 to 644 Mb), with room for mammalian genomes: `SELENOPROFILES_SELENOPROFILES` from `process_high` to `process_medium`, `SECMARKER` from `process_medium` to `process_low`, and the nf-core `minimap2/align` module from `process_high` to `process_medium` (recorded as a module patch).
+
 ### `Fixed`
 
 - Tasks rerun in the same work directory (for example after a Slurm requeue) no longer fail on decompressing their input (the shell runs with `noclobber`, `bash -C`): the local modules remove a leftover decompressed file before writing it, and stop with an error, without writing, if that name is a symbolic link (a staged input), so that an input file can never be overwritten.
