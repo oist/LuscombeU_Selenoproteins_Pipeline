@@ -1,0 +1,419 @@
+{
+    "-profile test - stub": {
+        "content": [
+            {
+                "COMPARE_GENES": {
+                    "python": "3.14.5"
+                },
+                "COMPARE_TRNASEC": {
+                    "python": "3.14.5"
+                },
+                "INFERNAL_CMSEARCH_TRNASEC": {
+                    "gzip": 1.12,
+                    "infernal": "1.1.5"
+                },
+                "MINIMAP2_ALIGN_TRANSCRIPTS": {
+                    "minimap2": "2.30-r1287"
+                },
+                "MINIPROT_ALIGN": {
+                    "miniprot": "0.11-r234"
+                },
+                "MINIPROT_INDEX": {
+                    "miniprot": "0.11-r234"
+                },
+                "PROFILE_QUERIES": {
+                    "python": "3.14.5"
+                },
+                "SECMARKER": {
+                    "secmarker": "1.0.0"
+                },
+                "SEC_ANNOTATION_CHECK": {
+                    "python": "3.14.5"
+                },
+                "SEC_CHECK": {
+                    "python": "3.14.5"
+                },
+                "SEC_SUMMARY": {
+                    "python": "3.14.5"
+                },
+                "SEC_TRANSCRIPT_SUPPORT": {
+                    "python": "3.14.5"
+                },
+                "SELENOPROFILES_ASSESS": {
+                    "selenoprofiles": "4.5.8"
+                },
+                "SELENOPROFILES_SELENOPROFILES": {
+                    "selenoprofiles": "4.5.8"
+                },
+                "SEQKIT_STATS": {
+                    "seqkit": "2.13.0"
+                },
+                "UNTAR_SELENOPROFILES_DATA": {
+                    "untar": 1.34
+                },
+                "Workflow": {
+                    "oist/LuscombeU_Selenoproteins_Pipeline": "v0.2.0dev"
+                }
+            },
+            [
+                "annotation",
+                "annotation/hs_chr22.sec_annotation.tsv",
+                "annotation/hs_chr22.sec_annotation_summary.tsv",
+                "compare",
+                "compare/ec_fragment.genes_summary.tsv",
+                "compare/ec_fragment.sec_codons.gff3",
+                "compare/ec_fragment.sec_sites.tsv",
+                "compare/ec_fragment.trnasec_loci.tsv",
+                "compare/ec_fragment.trnasec_summary.tsv",
+                "compare/hs_chr22.genes_summary.tsv",
+                "compare/hs_chr22.sec_codons.gff3",
+                "compare/hs_chr22.sec_sites.tsv",
+                "compare/hs_chr22.trnasec_loci.tsv",
+                "compare/hs_chr22.trnasec_summary.tsv",
+                "compare/sc_genome.genes_summary.tsv",
+                "compare/sc_genome.sec_codons.gff3",
+                "compare/sc_genome.sec_sites.tsv",
+                "compare/sc_genome.trnasec_loci.tsv",
+                "compare/sc_genome.trnasec_summary.tsv",
+                "infernal",
+                "infernal/ec_fragment.trnasec.tbl.gz",
+                "infernal/ec_fragment.trnasec.txt.gz",
+                "infernal/hs_chr22.trnasec.tbl.gz",
+                "infernal/hs_chr22.trnasec.txt.gz",
+                "infernal/sc_genome.trnasec.tbl.gz",
+                "infernal/sc_genome.trnasec.txt.gz",
+                "miniprot",
+                "miniprot/ec_fragment.gff",
+                "miniprot/hs_chr22.gff",
+                "miniprot/sc_genome.gff",
+                "multiqc",
+                "multiqc/multiqc_data",
+                "multiqc/multiqc_data/.stub",
+                "multiqc/multiqc_plots",
+                "multiqc/multiqc_plots/.stub",
+                "multiqc/multiqc_report.html",
+                "pipeline_info",
+                "pipeline_info/selenoproteins_software_mqc_versions.yml",
+                "sec",
+                "sec/ec_fragment.miniprot_sec.tsv",
+                "sec/hs_chr22.miniprot_sec.tsv",
+                "sec/sc_genome.miniprot_sec.tsv",
+                "secmarker",
+                "secmarker/ec_fragment.trnasec.fa",
+                "secmarker/ec_fragment.trnasec.gff",
+                "secmarker/ec_fragment.trnasec.ss",
+                "secmarker/hs_chr22.trnasec.fa",
+                "secmarker/hs_chr22.trnasec.gff",
+                "secmarker/hs_chr22.trnasec.ss",
+                "secmarker/sc_genome.trnasec.fa",
+                "secmarker/sc_genome.trnasec.gff",
+                "secmarker/sc_genome.trnasec.ss",
+                "selenoprofiles",
+                "selenoprofiles/ec_fragment.selenoprofiles.cds.fa",
+                "selenoprofiles/ec_fragment.selenoprofiles.faa",
+                "selenoprofiles/ec_fragment.selenoprofiles.gtf",
+                "selenoprofiles/ec_fragment.three_prime.fa",
+                "selenoprofiles/ec_fragment_alignments",
+                "selenoprofiles/ec_fragment_results.tar.gz",
+                "selenoprofiles/hs_chr22.genes.tsv",
+                "selenoprofiles/hs_chr22.selenoprofiles.cds.fa",
+                "selenoprofiles/hs_chr22.selenoprofiles.faa",
+                "selenoprofiles/hs_chr22.selenoprofiles.gtf",
+                "selenoprofiles/hs_chr22.three_prime.fa",
+                "selenoprofiles/hs_chr22.transcripts.tsv",
+                "selenoprofiles/hs_chr22_alignments",
+                "selenoprofiles/hs_chr22_results.tar.gz",
+                "selenoprofiles/sc_genome.selenoprofiles.cds.fa",
+                "selenoprofiles/sc_genome.selenoprofiles.faa",
+                "selenoprofiles/sc_genome.selenoprofiles.gtf",
+                "selenoprofiles/sc_genome.three_prime.fa",
+                "selenoprofiles/sc_genome_alignments",
+                "selenoprofiles/sc_genome_results.tar.gz",
+                "seqkit",
+                "seqkit/ec_fragment.tsv",
+                "seqkit/hs_chr22.tsv",
+                "seqkit/sc_genome.tsv",
+                "summary",
+                "summary/sec_site_agreement_mqc.tsv",
+                "summary/sec_trait_mqc.tsv",
+                "summary/selenoprotein_genes_mqc.tsv",
+                "summary/selenoprotein_queries.faa",
+                "summary/trnasec_mqc.tsv",
+                "transcripts",
+                "transcripts/hs_chr22.sec_transcripts.tsv"
+            ]
+        ],
+        "timestamp": "2026-10-16T19:56:36.545958688",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.7"
+        }
+    },
+    "-profile test": {
+        "content": [
+            {
+                "COMPARE_GENES": {
+                    "python": "3.14.5"
+                },
+                "COMPARE_TRNASEC": {
+                    "python": "3.14.5"
+                },
+                "INFERNAL_CMSEARCH_SECIS": {
+                    "gzip": 1.12,
+                    "infernal": "1.1.5"
+                },
+                "INFERNAL_CMSEARCH_TRNASEC": {
+                    "gzip": 1.12,
+                    "infernal": "1.1.5"
+                },
+                "MINIMAP2_ALIGN_TRANSCRIPTS": {
+                    "minimap2": "2.30-r1287"
+                },
+                "MINIPROT_ALIGN": {
+                    "miniprot": "0.11-r234"
+                },
+                "MINIPROT_INDEX": {
+                    "miniprot": "0.11-r234"
+                },
+                "PROFILE_QUERIES": {
+                    "python": "3.14.5"
+                },
+                "SECMARKER": {
+                    "secmarker": "1.0.0"
+                },
+                "SEC_ANNOTATION_CHECK": {
+                    "python": "3.14.5"
+                },
+                "SEC_CHECK": {
+                    "python": "3.14.5"
+                },
+                "SEC_SUMMARY": {
+                    "python": "3.14.5"
+                },
+                "SEC_TRANSCRIPT_SUPPORT": {
+                    "python": "3.14.5"
+                },
+                "SELENOPROFILES_ASSESS": {
+                    "selenoprofiles": "4.5.8"
+                },
+                "SELENOPROFILES_SELENOPROFILES": {
+                    "selenoprofiles": "4.5.8"
+                },
+                "SEQKIT_STATS": {
+                    "seqkit": "2.13.0"
+                },
+                "UNTAR_SELENOPROFILES_DATA": {
+                    "untar": 1.34
+                },
+                "Workflow": {
+                    "oist/LuscombeU_Selenoproteins_Pipeline": "v0.2.0dev"
+                }
+            },
+            [
+                "annotation",
+                "annotation/hs_chr22.sec_annotation.tsv",
+                "annotation/hs_chr22.sec_annotation_summary.tsv",
+                "compare",
+                "compare/ec_fragment.genes_summary.tsv",
+                "compare/ec_fragment.sec_codons.gff3",
+                "compare/ec_fragment.sec_sites.tsv",
+                "compare/ec_fragment.trnasec_loci.tsv",
+                "compare/ec_fragment.trnasec_summary.tsv",
+                "compare/hs_chr22.genes_summary.tsv",
+                "compare/hs_chr22.sec_codons.gff3",
+                "compare/hs_chr22.sec_sites.tsv",
+                "compare/hs_chr22.trnasec_loci.tsv",
+                "compare/hs_chr22.trnasec_summary.tsv",
+                "compare/sc_genome.genes_summary.tsv",
+                "compare/sc_genome.sec_codons.gff3",
+                "compare/sc_genome.sec_sites.tsv",
+                "compare/sc_genome.trnasec_loci.tsv",
+                "compare/sc_genome.trnasec_summary.tsv",
+                "infernal",
+                "infernal/ec_fragment.trnasec.tbl.gz",
+                "infernal/ec_fragment.trnasec.txt.gz",
+                "infernal/hs_chr22.secis.tbl.gz",
+                "infernal/hs_chr22.secis.txt.gz",
+                "infernal/hs_chr22.trnasec.tbl.gz",
+                "infernal/hs_chr22.trnasec.txt.gz",
+                "infernal/sc_genome.trnasec.tbl.gz",
+                "infernal/sc_genome.trnasec.txt.gz",
+                "miniprot",
+                "miniprot/ec_fragment.gff",
+                "miniprot/hs_chr22.gff",
+                "miniprot/sc_genome.gff",
+                "multiqc",
+                "multiqc/multiqc_data",
+                "multiqc/multiqc_data/llms-full.txt",
+                "multiqc/multiqc_data/multiqc.log",
+                "multiqc/multiqc_data/multiqc.parquet",
+                "multiqc/multiqc_data/multiqc_annotation_assessment.txt",
+                "multiqc/multiqc_data/multiqc_citations.txt",
+                "multiqc/multiqc_data/multiqc_data.json",
+                "multiqc/multiqc_data/multiqc_general_stats.txt",
+                "multiqc/multiqc_data/multiqc_sec_annotation.txt",
+                "multiqc/multiqc_data/multiqc_sec_site_agreement.txt",
+                "multiqc/multiqc_data/multiqc_selenoprotein_genes.txt",
+                "multiqc/multiqc_data/multiqc_seqkit_stats.txt",
+                "multiqc/multiqc_data/multiqc_software_versions.txt",
+                "multiqc/multiqc_data/multiqc_sources.txt",
+                "multiqc/multiqc_data/multiqc_transcript_support.txt",
+                "multiqc/multiqc_data/multiqc_trnasec.txt",
+                "multiqc/multiqc_data/seqkit-stats-seqcounts-plot.txt",
+                "multiqc/multiqc_data/seqkit-stats-table.txt",
+                "multiqc/multiqc_plots",
+                "multiqc/multiqc_plots/pdf",
+                "multiqc/multiqc_plots/pdf/annotation_assessment.pdf",
+                "multiqc/multiqc_plots/pdf/sec_annotation.pdf",
+                "multiqc/multiqc_plots/pdf/sec_site_agreement.pdf",
+                "multiqc/multiqc_plots/pdf/selenoprotein_genes.pdf",
+                "multiqc/multiqc_plots/pdf/seqkit-stats-seqcounts-plot.pdf",
+                "multiqc/multiqc_plots/pdf/seqkit-stats-table.pdf",
+                "multiqc/multiqc_plots/pdf/transcript_support.pdf",
+                "multiqc/multiqc_plots/pdf/trnasec.pdf",
+                "multiqc/multiqc_plots/png",
+                "multiqc/multiqc_plots/png/annotation_assessment.png",
+                "multiqc/multiqc_plots/png/sec_annotation.png",
+                "multiqc/multiqc_plots/png/sec_site_agreement.png",
+                "multiqc/multiqc_plots/png/selenoprotein_genes.png",
+                "multiqc/multiqc_plots/png/seqkit-stats-seqcounts-plot.png",
+                "multiqc/multiqc_plots/png/seqkit-stats-table.png",
+                "multiqc/multiqc_plots/png/transcript_support.png",
+                "multiqc/multiqc_plots/png/trnasec.png",
+                "multiqc/multiqc_plots/svg",
+                "multiqc/multiqc_plots/svg/annotation_assessment.svg",
+                "multiqc/multiqc_plots/svg/sec_annotation.svg",
+                "multiqc/multiqc_plots/svg/sec_site_agreement.svg",
+                "multiqc/multiqc_plots/svg/selenoprotein_genes.svg",
+                "multiqc/multiqc_plots/svg/seqkit-stats-seqcounts-plot.svg",
+                "multiqc/multiqc_plots/svg/seqkit-stats-table.svg",
+                "multiqc/multiqc_plots/svg/transcript_support.svg",
+                "multiqc/multiqc_plots/svg/trnasec.svg",
+                "multiqc/multiqc_report.html",
+                "pipeline_info",
+                "pipeline_info/selenoproteins_software_mqc_versions.yml",
+                "sec",
+                "sec/ec_fragment.miniprot_sec.tsv",
+                "sec/hs_chr22.miniprot_sec.tsv",
+                "sec/sc_genome.miniprot_sec.tsv",
+                "secmarker",
+                "secmarker/ec_fragment.trnasec.fa",
+                "secmarker/ec_fragment.trnasec.gff",
+                "secmarker/ec_fragment.trnasec.ss",
+                "secmarker/hs_chr22.trnasec.fa",
+                "secmarker/hs_chr22.trnasec.gff",
+                "secmarker/hs_chr22.trnasec.ss",
+                "secmarker/sc_genome.trnasec.fa",
+                "secmarker/sc_genome.trnasec.gff",
+                "secmarker/sc_genome.trnasec.ss",
+                "selenoprofiles",
+                "selenoprofiles/ec_fragment.selenoprofiles.cds.fa",
+                "selenoprofiles/ec_fragment.selenoprofiles.faa",
+                "selenoprofiles/ec_fragment.selenoprofiles.gtf",
+                "selenoprofiles/ec_fragment.three_prime.fa",
+                "selenoprofiles/ec_fragment_alignments",
+                "selenoprofiles/ec_fragment_results.tar.gz",
+                "selenoprofiles/hs_chr22.genes.tsv",
+                "selenoprofiles/hs_chr22.selenoprofiles.cds.fa",
+                "selenoprofiles/hs_chr22.selenoprofiles.faa",
+                "selenoprofiles/hs_chr22.selenoprofiles.gtf",
+                "selenoprofiles/hs_chr22.three_prime.fa",
+                "selenoprofiles/hs_chr22.transcripts.tsv",
+                "selenoprofiles/hs_chr22_alignments",
+                "selenoprofiles/hs_chr22_alignments/SELENOO.ali",
+                "selenoprofiles/hs_chr22_results.tar.gz",
+                "selenoprofiles/sc_genome.selenoprofiles.cds.fa",
+                "selenoprofiles/sc_genome.selenoprofiles.faa",
+                "selenoprofiles/sc_genome.selenoprofiles.gtf",
+                "selenoprofiles/sc_genome.three_prime.fa",
+                "selenoprofiles/sc_genome_alignments",
+                "selenoprofiles/sc_genome_results.tar.gz",
+                "seqkit",
+                "seqkit/ec_fragment.tsv",
+                "seqkit/hs_chr22.tsv",
+                "seqkit/sc_genome.tsv",
+                "summary",
+                "summary/annotation_assessment_mqc.tsv",
+                "summary/sec_annotation_mqc.tsv",
+                "summary/sec_site_agreement_mqc.tsv",
+                "summary/sec_trait_mqc.tsv",
+                "summary/selenoprotein_genes_mqc.tsv",
+                "summary/selenoprotein_queries.faa",
+                "summary/transcript_support_mqc.tsv",
+                "summary/trnasec_mqc.tsv",
+                "transcripts",
+                "transcripts/hs_chr22.sec_transcripts.tsv"
+            ],
+            [
+                "hs_chr22.sec_annotation.tsv:md5,3d367a3f537f427aca7f53b79a0e1750",
+                "hs_chr22.sec_annotation_summary.tsv:md5,09d124ae09d0fc47e1e2d1cb68c99904",
+                "ec_fragment.genes_summary.tsv:md5,f1e3bde06cbd30308b42569ed85eb833",
+                "ec_fragment.sec_codons.gff3:md5,5199447fae0e3bb02746b0e8e5a33163",
+                "ec_fragment.sec_sites.tsv:md5,85adf125dfff6cea57fb45077161b8e2",
+                "ec_fragment.trnasec_loci.tsv:md5,1a3e199593db1d67e3223b23ed7f79d6",
+                "ec_fragment.trnasec_summary.tsv:md5,a82a1e7e4c4d28029a9fd157995f8143",
+                "hs_chr22.genes_summary.tsv:md5,0b76d3992d6a0ae23ef1f1150b5e173c",
+                "hs_chr22.sec_codons.gff3:md5,af5a37980b67294201ae3921e347eebe",
+                "hs_chr22.sec_sites.tsv:md5,52caad25143fc0d79144991ad8cb5df5",
+                "hs_chr22.trnasec_loci.tsv:md5,7130dc7e3059a2414382e6e35244579e",
+                "hs_chr22.trnasec_summary.tsv:md5,c020842a20d60ed3fef9308086553ff4",
+                "sc_genome.genes_summary.tsv:md5,22515130c0dce504c1c21d908f198955",
+                "sc_genome.sec_codons.gff3:md5,5199447fae0e3bb02746b0e8e5a33163",
+                "sc_genome.sec_sites.tsv:md5,85adf125dfff6cea57fb45077161b8e2",
+                "sc_genome.trnasec_loci.tsv:md5,1a3e199593db1d67e3223b23ed7f79d6",
+                "sc_genome.trnasec_summary.tsv:md5,7d0fed93f03ed8d875d2e98238da2a19",
+                "ec_fragment.gff:md5,df19e1b84ba6f691d20c72b397c88abf",
+                "hs_chr22.gff:md5,b00be1eac37f322322c65ea90903da0f",
+                "sc_genome.gff:md5,df19e1b84ba6f691d20c72b397c88abf",
+                "multiqc_annotation_assessment.txt:md5,ef2bfe8f56fdbfd9321f935bc53e5433",
+                "multiqc_citations.txt:md5,c94ed9029091505edb952645737b035b",
+                "multiqc_general_stats.txt:md5,ec914deccc5dacc81b43d0ab9d7ebe5d",
+                "multiqc_sec_annotation.txt:md5,11fa109249f083213d082f4621ba90da",
+                "multiqc_sec_site_agreement.txt:md5,bd774383cdd5906837d2afd8217c8881",
+                "multiqc_selenoprotein_genes.txt:md5,a09e855574ae71d1f43bc973eb418c68",
+                "multiqc_seqkit_stats.txt:md5,616db68ae08b4ae16ee7bd4107a18d25",
+                "multiqc_transcript_support.txt:md5,1fdce7664fec395e0c178506b494288b",
+                "multiqc_trnasec.txt:md5,783cc25fdf4b770657f06812322dbcea",
+                "seqkit-stats-seqcounts-plot.txt:md5,0b6b4ce4d2e8202af4802f3a2c29e15c",
+                "seqkit-stats-table.txt:md5,05ad54c4ab8177686d61ec235d65a6b5",
+                "ec_fragment.miniprot_sec.tsv:md5,474514e0cc3dcb217455101a73540cff",
+                "hs_chr22.miniprot_sec.tsv:md5,e792d6d7d6c14f69d2c14e6e9b485c3e",
+                "sc_genome.miniprot_sec.tsv:md5,474514e0cc3dcb217455101a73540cff",
+                "ec_fragment.trnasec.fa:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "ec_fragment.trnasec.gff:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "ec_fragment.trnasec.ss:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "hs_chr22.trnasec.fa:md5,03e24f3a148061528781e27499044dd4",
+                "hs_chr22.trnasec.gff:md5,acd9e97855ec52a37f83302e9909e1d9",
+                "hs_chr22.trnasec.ss:md5,bf272aac9f982e321be5414694423f61",
+                "sc_genome.trnasec.fa:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "sc_genome.trnasec.gff:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "sc_genome.trnasec.ss:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "ec_fragment.selenoprofiles.gtf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "ec_fragment.three_prime.fa:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "hs_chr22.genes.tsv:md5,7d075abebaa28e433ed8579b389734fa",
+                "hs_chr22.selenoprofiles.gtf:md5,babb03839283aa8edff780d0d5f0bcf9",
+                "hs_chr22.three_prime.fa:md5,da205b57fc2908cda4d1422a67b4d70c",
+                "hs_chr22.transcripts.tsv:md5,7d075abebaa28e433ed8579b389734fa",
+                "sc_genome.selenoprofiles.gtf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "sc_genome.three_prime.fa:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "ec_fragment.tsv:md5,5d61e12d180e9e3f9b0c2c8b2e654f5a",
+                "hs_chr22.tsv:md5,19fa27054829c0d7ed131a14a1e5c941",
+                "sc_genome.tsv:md5,453bb0ce8ea873841c17e3eef8819bd3",
+                "annotation_assessment_mqc.tsv:md5,66c2ea9d8ddd108ff9ba57f9eff29a48",
+                "sec_annotation_mqc.tsv:md5,40cc3d6a4af00e7bc31e652adda2f41c",
+                "sec_site_agreement_mqc.tsv:md5,5137a25e32d2f0722f1ac0fc3ad1c624",
+                "sec_trait_mqc.tsv:md5,6bf9a06753b5c99389a288eb3dff4507",
+                "selenoprotein_genes_mqc.tsv:md5,7138eb579fa46ab708bbfc55f917757c",
+                "selenoprotein_queries.faa:md5,604945e19259c50a13fecde00964b33e",
+                "transcript_support_mqc.tsv:md5,1210682711bfb15308babef0e26f8fee",
+                "trnasec_mqc.tsv:md5,13c0e368add5836fdd136e78feace00f",
+                "hs_chr22.sec_transcripts.tsv:md5,4acbb1304d8d2430625587f0009817e2"
+            ]
+        ],
+        "timestamp": "2026-10-16T19:54:11.69430385",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.7"
+        }
+    }
+}
