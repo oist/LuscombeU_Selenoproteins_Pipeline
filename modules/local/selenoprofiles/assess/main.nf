@@ -28,8 +28,8 @@ process SELENOPROFILES_ASSESS {
     """
     export HOME=\$PWD
     selenoprofiles -setup > /dev/null
-    ${fasta_gz ? "gunzip -c ${fasta} >| ${target}" : ''}
-    ${annotation_gz ? "gunzip -c ${annotation} >| ${gff}" : ''}
+    ${fasta_gz ? "if [ -L ${target} ]; then echo 'ERROR: ${target} is a staged input; not overwritten' >&2; exit 1; fi; rm -f ${target}; gunzip -c ${fasta} > ${target}" : ''}
+    ${annotation_gz ? "if [ -L ${gff} ]; then echo 'ERROR: ${gff} is a staged input; not overwritten' >&2; exit 1; fi; rm -f ${gff}; gunzip -c ${annotation} > ${gff}" : ''}
 
     # assess fails on an empty prediction set, which is a valid result
     if grep -q -P '\\tSelenocysteine\\t' ${selenoprofiles_gtf}; then
@@ -41,7 +41,8 @@ process SELENOPROFILES_ASSESS {
             -agg ${prefix}.genes.tsv \\
             ${args}
     else
-        printf 'transcript_id\\ttranscript_id_ens\\tType_annotation\\n' >| ${prefix}.transcripts.tsv
+        rm -f ${prefix}.transcripts.tsv ${prefix}.genes.tsv
+        printf 'transcript_id\\ttranscript_id_ens\\tType_annotation\\n' > ${prefix}.transcripts.tsv
         cp ${prefix}.transcripts.tsv ${prefix}.genes.tsv
     fi
     rm -f ${fasta_gz ? target : ''} ${annotation_gz ? gff : ''} *.fai
@@ -50,7 +51,7 @@ process SELENOPROFILES_ASSESS {
     stub:
     def prefix = task.ext.prefix ?: "${meta.id}"
     """
-    printf 'transcript_id\\ttranscript_id_ens\\tType_annotation\\n' >| ${prefix}.transcripts.tsv
+    printf 'transcript_id\\ttranscript_id_ens\\tType_annotation\\n' > ${prefix}.transcripts.tsv
     cp ${prefix}.transcripts.tsv ${prefix}.genes.tsv
     """
 }

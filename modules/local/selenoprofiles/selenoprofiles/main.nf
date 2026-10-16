@@ -32,7 +32,7 @@ process SELENOPROFILES_SELENOPROFILES {
     # selenoprofiles reads its configuration from \$HOME and writes BLAST indices next to the target
     export HOME=\$PWD
     selenoprofiles -setup > /dev/null
-    ${is_compressed ? "gunzip -c ${fasta} >| ${target}" : ''}
+    ${is_compressed ? "if [ -L ${target} ]; then echo 'ERROR: ${target} is a staged input; not overwritten' >&2; exit 1; fi; rm -f ${target}; gunzip -c ${fasta} > ${target}" : ''}
 
     if [ -d ${selenoprofiles_data}/selenoprotein_profiles ]; then
         data_option="-selenoprofiles_data_dir ${selenoprofiles_data}"

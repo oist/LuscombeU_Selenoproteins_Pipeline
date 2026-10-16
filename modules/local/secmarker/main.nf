@@ -25,7 +25,7 @@ process SECMARKER {
     def is_compressed = fasta.getExtension() == "gz"
     def target = is_compressed ? fasta.getBaseName() : fasta
     """
-    ${is_compressed ? "gunzip -c ${fasta} >| ${target}" : ''}
+    ${is_compressed ? "if [ -L ${target} ]; then echo 'ERROR: ${target} is a staged input; not overwritten' >&2; exit 1; fi; rm -f ${target}; gunzip -c ${fasta} > ${target}" : ''}
 
     set +e
     python -m secmarker.secmarker_lib \\
