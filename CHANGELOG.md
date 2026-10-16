@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### `Added`
 
+### `Changed`
+
+- Resources requested by Selenoprofiles, minimap2, miniprot, Secmarker and cmsearch reduced to match their measured use on nine appendicularian genomes (for example Selenoprofiles: 4 CPUs and 8 GB instead of 12 CPUs and 72 GB); memory and time still double on retry.
+
 ### `Fixed`
 
 - Tasks rerun in the same work directory (for example after a Slurm requeue) no longer fail on decompressing their input (the shell runs with `noclobber`, `bash -C`): the local modules remove a leftover decompressed file before writing it, and stop with an error, without writing, if that name is a symbolic link (a staged input), so that an input file can never be overwritten.
