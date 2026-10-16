@@ -4,8 +4,8 @@ process SELENOPROFILES_ASSESS {
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine in ['singularity', 'apptainer'] && !task.ext.singularity_pull_docker_container
-        ? 'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/fc/fcea51d99062f03670c049c64abad3e89eb20a434b9f66dc69375a4a519eeac7/data'
-        : 'community.wave.seqera.io/library/coreutils_findutils_gawk_grep_pruned:e68344212d05a99d' }"
+        ? 'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/15/15df41af9baed69a73306cce8a4260d7d028930475b25af8c280470a7360df61/data'
+        : 'community.wave.seqera.io/library/coreutils_findutils_gawk_grep_pruned:e66263d7188b105f' }"
 
     input:
     tuple val(meta), path(selenoprofiles_gtf), path(annotation), path(fasta)
