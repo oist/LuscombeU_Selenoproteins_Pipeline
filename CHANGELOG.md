@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### `Added`
 
+- `--selenoprofiles_overrides`: a directory or `.tar.gz` archive of Selenoprofiles profiles that replace the standard profiles of the same name (new module `SELENOPROFILES_OVERRIDE`), for lineage-specific profiles.
+
 ### `Changed`
 
 - Resource labels set from the execution trace of nine appendicularian genomes (56 to 644 Mb), with room for mammalian genomes: `SELENOPROFILES_SELENOPROFILES` from `process_high` to `process_medium`, `SECMARKER` from `process_medium` to `process_low`, and the nf-core `minimap2/align` module from `process_high` to `process_medium` (recorded as a module patch).

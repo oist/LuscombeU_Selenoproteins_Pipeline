@@ -70,6 +70,19 @@ Missing families are not always absent genes: SELENOT, SEPHS2 and SELENOS are mi
 - The Sec trait call (`present`, `absent`, `inconsistent`) combines selenoprotein genes with supported tRNA-Sec loci: found by two or more tools and, when Secmarker reports the locus, with the G73 discriminator base of functional tRNA-Sec genes. An `absent` call can also result from an incomplete assembly; check the assembly statistics in the report.
 - SECIS hits are reported as evidence and do not filter predictions. Rfam has no archaeal SECIS model, and the pipeline does not search bacterial SECIS elements, which lie inside the coding sequence.
 
+## Selenoprofiles profiles
+
+The pipeline searches, for each sample, the Selenoprofiles profile sets named in its `profiles` column, or by
+default `eukarya,machinery` for eukaryotes and `prokarya` for bacteria and archaea (with `--selenoprofiles_data`,
+or downloaded data when it is unset).
+
+`--selenoprofiles_overrides` takes a directory or `.tar.gz` archive of profiles made with `selenoprofiles build`
+(`<name>.fa`, `<name>.fa.config` and optionally `<name>.fa.profile_data`). Each profile replaces the standard profile
+of the same name in a linked copy of the Selenoprofiles data, so that the standard sets use it: for example,
+lineage-specific profiles of the Sec machinery named `pstk`, `SEPHS2` and so on are used by the `machinery` set. A
+profile with a new name is added to the data and must be named in the `profiles` column. The replaced profiles are
+also the source of the miniprot queries.
+
 ## Testing before a real run
 
 `-profile test,<your container or institutional profile>` runs every process of the pipeline on small public

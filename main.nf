@@ -40,6 +40,7 @@ workflow OIST_SELENOPROTEINS {
     SELENOPROTEINS(
         samplesheet,
         params.selenoprofiles_data,
+        params.selenoprofiles_overrides,
         params.trnasec_tools,
         params.skip_miniprot.toString().toBoolean(),
         params.skip_secis.toString().toBoolean(),

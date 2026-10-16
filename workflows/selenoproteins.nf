@@ -5,6 +5,8 @@
 */
 include { SEQKIT_STATS } from '../modules/nf-core/seqkit/stats/main'
 include { UNTAR as UNTAR_SELENOPROFILES_DATA } from '../modules/nf-core/untar/main'
+include { UNTAR as UNTAR_SELENOPROFILES_OVERRIDES } from '../modules/nf-core/untar/main'
+include { SELENOPROFILES_OVERRIDE } from '../modules/local/selenoprofiles/override/main'
 include { SELENOPROFILES_DOWNLOAD } from '../modules/local/selenoprofiles/download/main'
 include { SELENOPROFILES_SELENOPROFILES } from '../modules/local/selenoprofiles/selenoprofiles/main'
 include { SELENOPROFILES_ASSESS } from '../modules/local/selenoprofiles/assess/main'
@@ -42,6 +44,7 @@ workflow SELENOPROTEINS {
     take:
     ch_samplesheet // channel: [ val(meta), path(fasta), path(annotation) or [], path(transcripts) or [] ]
     selenoprofiles_data
+    selenoprofiles_overrides
     trnasec_tools
     skip_miniprot
     skip_secis
@@ -80,6 +83,20 @@ workflow SELENOPROTEINS {
     else {
         UNTAR_SELENOPROFILES_DATA(channel.value([[id: 'selenoprofiles_data'], file(selenoprofiles_data, checkIfExists: true)]))
         ch_selenoprofiles_data = UNTAR_SELENOPROFILES_DATA.out.untar.map { _meta, dir -> dir }
+    }
+    if (selenoprofiles_overrides) {
+        // profiles that replace standard profiles of the same name (directory or .tar.gz)
+        def overrides = file(selenoprofiles_overrides, checkIfExists: true)
+        def ch_overrides
+        if (overrides.isDirectory()) {
+            ch_overrides = channel.value(overrides)
+        }
+        else {
+            UNTAR_SELENOPROFILES_OVERRIDES(channel.value([[id: 'selenoprofiles_overrides'], overrides]))
+            ch_overrides = UNTAR_SELENOPROFILES_OVERRIDES.out.untar.map { _meta, dir -> dir }
+        }
+        SELENOPROFILES_OVERRIDE(ch_selenoprofiles_data, ch_overrides)
+        ch_selenoprofiles_data = SELENOPROFILES_OVERRIDE.out.db
     }
 
     SELENOPROFILES_SELENOPROFILES(

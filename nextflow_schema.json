@@ -56,6 +56,13 @@
                     "description": "Selenoprofiles data directory or archive. If unset, the pipeline downloads it with `selenoprofiles -download`.",
                     "help_text": "A directory written by `selenoprofiles -download`, or a directory or `.tar.gz` archive holding only the profile alignments and their `.fa.config` files. Profiles that use tag or gene-ontology filters need the full data directory."
                 },
+                "selenoprofiles_overrides": {
+                    "type": "string",
+                    "format": "path",
+                    "fa_icon": "fas fa-layer-group",
+                    "description": "Directory or `.tar.gz` archive of Selenoprofiles profiles that replace the standard profiles of the same name.",
+                    "help_text": "Each profile is a `<name>.fa` alignment with its `<name>.fa.config` and, optionally, `<name>.fa.profile_data`, as made by `selenoprofiles build`. A profile named like a standard one (for example `pstk`) replaces it, so that the standard profile sets (`eukarya`, `machinery`) use it; a profile with a new name is added and must be named in the `profiles` column of the samplesheet."
+                },
                 "skip_miniprot": {
                     "type": "boolean",
                     "fa_icon": "fas fa-forward",
