@@ -32,10 +32,9 @@ lint:
 template:
   org: oist
   name: selenoproteins
-  description: Annotation of selenoprotein genes, Sec machinery and tRNA-Sec in genome
-    assemblies
+  description: Annotation of selenoprotein genes, Sec machinery and tRNA-Sec in genome assemblies
   author: Charles Plessy
-  version: 1.0.0dev
+  version: 0.1.0dev
   force: true
   outdir: .
   skip_features:
