@@ -32,3 +32,4 @@ dependencies:
       - pyranges1==1.1.4
       - ruranges==0.0.12
       - selenoprofiles4==4.5.8
+      - pyfaidx==0.9.0.4   # needed by "selenoprofiles assess" only, not declared by selenoprofiles4
