@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### `Changed`
 
+- `SELENOPROFILES_ASSESS` uses `process_low`: on the human and mouse genomes it exceeded the 6 GB of `process_single` and succeeded only on retry.
+
 ### `Fixed`
 
 ## v0.2.0 - [2026-10-17]
