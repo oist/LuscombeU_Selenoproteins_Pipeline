@@ -12,6 +12,9 @@
                     "gzip": 1.12,
                     "infernal": "1.1.5"
                 },
+                "MACHINERY_SUMMARY": {
+                    "python": "3.14.5"
+                },
                 "MINIMAP2_ALIGN_TRANSCRIPTS": {
                     "minimap2": "2.30-r1287"
                 },
@@ -52,7 +55,7 @@
                     "untar": 1.34
                 },
                 "Workflow": {
-                    "oist/LuscombeU_Selenoproteins_Pipeline": "v0.2.0dev"
+                    "oist/LuscombeU_Selenoproteins_Pipeline": "v0.2.0"
                 }
             },
             [
@@ -134,6 +137,7 @@
                 "seqkit/hs_chr22.tsv",
                 "seqkit/sc_genome.tsv",
                 "summary",
+                "summary/machinery_mqc.tsv",
                 "summary/sec_site_agreement_mqc.tsv",
                 "summary/sec_trait_mqc.tsv",
                 "summary/selenoprotein_genes_mqc.tsv",
@@ -143,7 +147,7 @@
                 "transcripts/hs_chr22.sec_transcripts.tsv"
             ]
         ],
-        "timestamp": "2026-10-16T19:56:36.545958688",
+        "timestamp": "2026-10-17T08:56:57.864663919",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.7"
@@ -165,6 +169,9 @@
                 "INFERNAL_CMSEARCH_TRNASEC": {
                     "gzip": 1.12,
                     "infernal": "1.1.5"
+                },
+                "MACHINERY_SUMMARY": {
+                    "python": "3.14.5"
                 },
                 "MINIMAP2_ALIGN_TRANSCRIPTS": {
                     "minimap2": "2.30-r1287"
@@ -206,7 +213,7 @@
                     "untar": 1.34
                 },
                 "Workflow": {
-                    "oist/LuscombeU_Selenoproteins_Pipeline": "v0.2.0dev"
+                    "oist/LuscombeU_Selenoproteins_Pipeline": "v0.2.0"
                 }
             },
             [
@@ -251,6 +258,7 @@
                 "multiqc/multiqc_data/multiqc_citations.txt",
                 "multiqc/multiqc_data/multiqc_data.json",
                 "multiqc/multiqc_data/multiqc_general_stats.txt",
+                "multiqc/multiqc_data/multiqc_machinery.txt",
                 "multiqc/multiqc_data/multiqc_sec_annotation.txt",
                 "multiqc/multiqc_data/multiqc_sec_site_agreement.txt",
                 "multiqc/multiqc_data/multiqc_selenoprotein_genes.txt",
@@ -264,6 +272,7 @@
                 "multiqc/multiqc_plots",
                 "multiqc/multiqc_plots/pdf",
                 "multiqc/multiqc_plots/pdf/annotation_assessment.pdf",
+                "multiqc/multiqc_plots/pdf/machinery.pdf",
                 "multiqc/multiqc_plots/pdf/sec_annotation.pdf",
                 "multiqc/multiqc_plots/pdf/sec_site_agreement.pdf",
                 "multiqc/multiqc_plots/pdf/selenoprotein_genes.pdf",
@@ -273,6 +282,7 @@
                 "multiqc/multiqc_plots/pdf/trnasec.pdf",
                 "multiqc/multiqc_plots/png",
                 "multiqc/multiqc_plots/png/annotation_assessment.png",
+                "multiqc/multiqc_plots/png/machinery.png",
                 "multiqc/multiqc_plots/png/sec_annotation.png",
                 "multiqc/multiqc_plots/png/sec_site_agreement.png",
                 "multiqc/multiqc_plots/png/selenoprotein_genes.png",
@@ -282,6 +292,7 @@
                 "multiqc/multiqc_plots/png/trnasec.png",
                 "multiqc/multiqc_plots/svg",
                 "multiqc/multiqc_plots/svg/annotation_assessment.svg",
+                "multiqc/multiqc_plots/svg/machinery.svg",
                 "multiqc/multiqc_plots/svg/sec_annotation.svg",
                 "multiqc/multiqc_plots/svg/sec_site_agreement.svg",
                 "multiqc/multiqc_plots/svg/selenoprotein_genes.svg",
@@ -334,6 +345,7 @@
                 "seqkit/sc_genome.tsv",
                 "summary",
                 "summary/annotation_assessment_mqc.tsv",
+                "summary/machinery_mqc.tsv",
                 "summary/sec_annotation_mqc.tsv",
                 "summary/sec_site_agreement_mqc.tsv",
                 "summary/sec_trait_mqc.tsv",
@@ -368,6 +380,7 @@
                 "multiqc_annotation_assessment.txt:md5,ef2bfe8f56fdbfd9321f935bc53e5433",
                 "multiqc_citations.txt:md5,c94ed9029091505edb952645737b035b",
                 "multiqc_general_stats.txt:md5,ec914deccc5dacc81b43d0ab9d7ebe5d",
+                "multiqc_machinery.txt:md5,13b0bd9fa62bd748ed686cedede53f30",
                 "multiqc_sec_annotation.txt:md5,11fa109249f083213d082f4621ba90da",
                 "multiqc_sec_site_agreement.txt:md5,bd774383cdd5906837d2afd8217c8881",
                 "multiqc_selenoprotein_genes.txt:md5,a09e855574ae71d1f43bc973eb418c68",
@@ -400,17 +413,18 @@
                 "hs_chr22.tsv:md5,19fa27054829c0d7ed131a14a1e5c941",
                 "sc_genome.tsv:md5,453bb0ce8ea873841c17e3eef8819bd3",
                 "annotation_assessment_mqc.tsv:md5,66c2ea9d8ddd108ff9ba57f9eff29a48",
+                "machinery_mqc.tsv:md5,59d67835fba9e0974f04475e9325f642",
                 "sec_annotation_mqc.tsv:md5,40cc3d6a4af00e7bc31e652adda2f41c",
                 "sec_site_agreement_mqc.tsv:md5,5137a25e32d2f0722f1ac0fc3ad1c624",
                 "sec_trait_mqc.tsv:md5,6bf9a06753b5c99389a288eb3dff4507",
-                "selenoprotein_genes_mqc.tsv:md5,7138eb579fa46ab708bbfc55f917757c",
+                "selenoprotein_genes_mqc.tsv:md5,cc9584f88dca80e0f10d940e88c1a523",
                 "selenoprotein_queries.faa:md5,604945e19259c50a13fecde00964b33e",
                 "transcript_support_mqc.tsv:md5,1210682711bfb15308babef0e26f8fee",
                 "trnasec_mqc.tsv:md5,13c0e368add5836fdd136e78feace00f",
                 "hs_chr22.sec_transcripts.tsv:md5,4acbb1304d8d2430625587f0009817e2"
             ]
         ],
-        "timestamp": "2026-10-16T19:54:11.69430385",
+        "timestamp": "2026-10-17T08:45:19.17304281",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.7"
