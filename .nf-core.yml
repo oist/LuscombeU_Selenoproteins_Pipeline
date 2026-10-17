@@ -34,7 +34,7 @@ template:
   name: selenoproteins
   description: Annotation of selenoprotein genes, Sec machinery and tRNA-Sec in genome assemblies
   author: Charles Plessy
-  version: 0.2.0
+  version: 0.3.0dev
   force: true
   outdir: .
   skip_features:
