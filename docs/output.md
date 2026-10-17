@@ -69,7 +69,8 @@ related families.
 
 - `summary/`: MultiQC custom-content tables (`*_mqc.tsv`) and the Sec trait call per genome (`sec_trait_mqc.tsv`).
   - `machinery_mqc.tsv`: per genome, the tRNA-Sec loci supported by two or more tools and the Selenoprofiles status of
-    the machinery genes (SEPHS2, PSTK, SecS, eEFSec, SBP2, SECp43). A gene found here is a homolog of the profile, not
+    the machinery genes (SEPHS2, PSTK, SecS, eEFSec, SBP2) and of the associated factor SECp43, which is not required for
+    selenoprotein synthesis in all cells. A gene found here is a homolog of the profile, not
     a proven ortholog (see above); a gene broken by the assembly may be missed.
 
 ### MultiQC

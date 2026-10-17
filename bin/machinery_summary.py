@@ -2,7 +2,7 @@
 """MultiQC table of the selenocysteine machinery found in each genome.
 
 Columns: tRNA-Sec (loci supported by two or more tools, from the per-genome tRNA-Sec summaries) and one column per
-gene of the Selenoprofiles machinery profile set (SEPHS2, PSTK, SecS, eEFSec, SBP2, SECp43), read from the
+gene of the Selenoprofiles machinery profile set (SEPHS2, PSTK, SecS, eEFSec, SBP2, and the associated factor SECp43), read from the
 Selenoprofiles GTF files (<sample>.selenoprofiles.gtf). Values:
   Sec        SEPHS2 predicted with a selenocysteine codon
   found      predicted (label homologue, or another residue at the selenocysteine position)
@@ -50,7 +50,8 @@ def main():
     with open(a.out, "w") as o:
         o.write("# id: 'machinery'\n# section_name: 'Selenocysteine machinery'\n"
                 "# description: 'tRNA-Sec loci supported by two or more tools, and the Selenoprofiles predictions of "
-                "the machinery genes: Sec, SEPHS2 with a selenocysteine codon; found; partial, only pseudo or "
+                "the machinery genes and of the associated factor SECp43 (TRNAU1AP), which is not required for "
+                "selenoprotein synthesis in all cells: Sec, SEPHS2 with a selenocysteine codon; found; partial, only pseudo or "
                 "unaligned predictions; -, none. Found means homologous to the profile: orthology to the named gene, as "
                 "opposed to a related paralog, is not tested. A gene broken by the assembly may be missed.'\n# plot_type: 'table'\n")
         o.write("Sample\ttRNA-Sec\t" + "\t".join(g for g, _ in GENES) + "\n")

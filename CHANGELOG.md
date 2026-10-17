@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### `Changed`
 
+- The machinery section of the MultiQC report describes SECp43 (TRNAU1AP) as an associated factor, not required for selenoprotein synthesis in all cells.
+
 - `SELENOPROFILES_ASSESS` uses `process_low`: on the human and mouse genomes it exceeded the 6 GB of `process_single` and succeeded only on retry.
 
 ### `Fixed`
